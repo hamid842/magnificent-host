@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_location_locations",
+  "info": {
+    "displayName": "MapInformation",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "latitude": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "string"
+    },
+    "zoom": {
+      "type": "string"
+    },
+    "bearing": {
+      "type": "string"
+    },
+    "pitch": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    }
+  }
+}
