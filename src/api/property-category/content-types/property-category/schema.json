@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "property_categories",
+  "info": {
+    "singularName": "property-category",
+    "pluralName": "property-categories",
+    "displayName": "propertyCategory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "housingType": {
+      "type": "enumeration",
+      "enum": [
+        "Apartment",
+        "Condominium",
+        "FamilyHome"
+      ]
+    }
+  }
+}
