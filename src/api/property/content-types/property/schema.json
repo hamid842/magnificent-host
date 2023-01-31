@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "properties",
+  "info": {
+    "singularName": "property",
+    "pluralName": "properties",
+    "displayName": "Property"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "generalInformation": {
+      "type": "json",
+      "required": true
+    },
+    "explanation": {
+      "type": "text"
+    },
+    "interiorFeatures": {
+      "type": "json"
+    },
+    "externalFeatures": {
+      "type": "json"
+    },
+    "extraFeatures": {
+      "type": "json"
+    },
+    "locationAndAccessibleInformation": {
+      "type": "json"
+    },
+    "frequentTravelers": {
+      "type": "json"
+    }
+  }
+}
