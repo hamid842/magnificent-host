@@ -4,7 +4,8 @@
   "info": {
     "singularName": "property",
     "pluralName": "properties",
-    "displayName": "Property"
+    "displayName": "Property",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -20,11 +21,12 @@
       "required": true
     },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "generalInformation": {
       "type": "json",
@@ -47,6 +49,11 @@
     },
     "frequentTravelers": {
       "type": "json"
+    },
+    "mapInfo": {
+      "type": "component",
+      "repeatable": true,
+      "component": "location.location"
     }
   }
 }
