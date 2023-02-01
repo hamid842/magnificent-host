@@ -20,6 +20,7 @@ export default {
             Title: listing.name,
             location: listing.address,
             generalInformation: {},
+            publishedAt: new Date(), // To publish the entry
           },
         });
       }
