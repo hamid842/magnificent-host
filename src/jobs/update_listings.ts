@@ -1,5 +1,5 @@
 import HostawayAPI from "../utils/HostawayAPI";
-import { TCalendar, TListing } from "../utils/APITypes";
+import { TCalendar, TListing, TListingImage } from "../utils/APITypes";
 
 export default {
   /**
@@ -19,6 +19,14 @@ export default {
             id: listing.id,
             Title: listing.name,
             location: listing.address,
+            images: listing.listingImages.map((item: TListingImage) => {
+              return {
+                id: item.id,
+                caption: item.caption,
+                url: item.url,
+                sortOrder: item.sortOrder
+              }
+            }),
             generalInformation: {},
             publishedAt: new Date(), // To publish the entry
           },

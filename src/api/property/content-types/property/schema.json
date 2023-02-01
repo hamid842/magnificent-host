@@ -20,14 +20,6 @@
       "type": "string",
       "required": true
     },
-    "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "generalInformation": {
       "type": "json",
       "required": true
@@ -54,6 +46,11 @@
       "type": "component",
       "repeatable": true,
       "component": "location.location"
+    },
+    "images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "property.image"
     }
   }
 }
