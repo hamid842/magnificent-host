@@ -96,16 +96,34 @@ export type TListing = {
   isRentalAgreementActive?: boolean,
   listingAgreementText?: string,
   listingAmenities?: TListingAmenity[],
-  listingBedTypes?: TListingBed[],
+  listingBedTypes?: TListingBedType[],
   listingImages?: TListingImage[],
   customFieldValues?: { customFieldId: number, value: string }[],
 };
 
+// Property of Listing
 export type TListingAmenity = { id: number, amenityId: number };
 
-export type TListingBed = { id: number, bedTypeId: number, quantity: number };
+// Property of Listing
+export type TListingBedType = { id: number, bedTypeId: number, quantity: number };
 
+// Property of Listing
 export type TListingImage = { id: number, caption?: string, url: string, sortOrder?: number };
+
+//===========================================================================================================
+
+// API + DB Entity
+export type TAmenity = { id: number, name: string };
+
+//===========================================================================================================
+
+// API + DB Entity
+export type TBedType = { id: number, name: string };
+
+//===========================================================================================================
+
+// API + DB Entity
+export type TPropertyType = { id: number, name: string };
 
 //===========================================================================================================
 
@@ -129,6 +147,8 @@ export type TCalendar = {
   desiredUnitsToSell?: number,
   reservations?: TReservation[],
 };
+
+//===========================================================================================================
 
 export type TReservation = {
   id: number,

@@ -1,5 +1,4 @@
-import HostawayAPI from "../utils/HostawayAPI";
-import { TCalendar, TListing, TListingImage } from "../utils/APITypes";
+import { downloadListings, downloadPropertyTypes, downloadAmenities, downloadBedTypes } from '../utils/Sync';
 
 export default {
   /**
@@ -7,33 +6,20 @@ export default {
   * Run this job every 1 Minute(s)
   */
   '*/1 * * * *': async ({ strapi }) => {
-    //-------------------------------------------------------------------------
-    console.log('Retrieve all listings: ');
-    const propertyUUID = 'api::property.property';
-    const listings: TListing[] = await HostawayAPI.getListings();
-    for (const listing of listings) {
-      const entry = await strapi.entityService.findOne(propertyUUID, listing.id);
-      if (!entry) {
-        const newEntry = await strapi.entityService.create(propertyUUID, {
-          data: {
-            id: listing.id,
-            Title: listing.name,
-            location: listing.address,
-            images: listing.listingImages.map((item: TListingImage) => {
-              return {
-                id: item.id,
-                caption: item.caption,
-                url: item.url,
-                sortOrder: item.sortOrder
-              }
-            }),
-            generalInformation: {},
-            publishedAt: new Date(), // To publish the entry
-          },
-        });
-      }
-    }
-    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
+    // TODO: TEMP: Only import items if there isn't any in the DB
+    //-------------------------------------------------------------------------------------------------
+    const amenities = await strapi.entityService.findMany('api::amenity.amenity', { fields: ['id'] });
+    if (!amenities.length) await downloadAmenities();
+    //-------------------------------------------------------------------------------------------------
+    const propertyTypes = await strapi.entityService.findMany('api::property-type.property-type', { fields: ['id'] });
+    if (!propertyTypes.length) await downloadPropertyTypes();
+    //-------------------------------------------------------------------------------------------------
+    const bedTypes = await strapi.entityService.findMany('api::bed-type.bed-type', { fields: ['id'] });
+    if (!bedTypes.length) await downloadBedTypes();
+    //-------------------------------------------------------------------------------------------------
+    const listings = await strapi.entityService.findMany('api::property.property', { fields: ['id'] });
+    if (!listings.length) await downloadListings();
   },
 
   /**
@@ -41,6 +27,6 @@ export default {
   * Run this job every 60 Minute(s)
   */
   '*/60 * * * *': async ({ strapi }) => {
-    console.log('Deep Comparison!');
+
   },
 };

@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_property_geolocations",
+  "info": {
+    "displayName": "geolocation"
+  },
+  "options": {},
+  "attributes": {
+    "latitude": {
+      "type": "float"
+    },
+    "longitude": {
+      "type": "float"
+    }
+  }
+}

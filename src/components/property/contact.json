@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_property_contacts",
+  "info": {
+    "displayName": "Contact"
+  },
+  "options": {},
+  "attributes": {
+    "contactName": {
+      "type": "string"
+    },
+    "contactSurName": {
+      "type": "string"
+    },
+    "contactPhone1": {
+      "type": "string"
+    },
+    "contactPhone2": {
+      "type": "string"
+    },
+    "contactEmail": {
+      "type": "string"
+    },
+    "contactAddress": {
+      "type": "string"
+    }
+  }
+}

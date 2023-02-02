@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "property_types",
+  "info": {
+    "singularName": "property-type",
+    "pluralName": "property-types",
+    "displayName": "PropertyType"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import querystring from 'querystring';
-import { TCalendar, TListing } from './APITypes';
+import { TAmenity, TBedType, TCalendar, TListing, TPropertyType } from './APITypes';
 
 export default class HostawayAPI {
   private static accessToken: { expires_in: number, access_token: string} | undefined;
@@ -71,7 +71,7 @@ export default class HostawayAPI {
       // Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving list of Listings on Hostaway] → \n', error);
+      console.log('[Error while retrieving a list of Listings from Hostaway] → \n', error);
       return [];
     }
   }
@@ -101,7 +101,7 @@ export default class HostawayAPI {
       // Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving list of Listings on Hostaway] → \n', error);
+      console.log('[Error while retrieving a Listing from Hostaway] → \n', error);
       return undefined;
     }
   }
@@ -136,7 +136,7 @@ export default class HostawayAPI {
       // Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving list of Listings on Hostaway] → \n', error);
+      console.log('[Error while retrieving a list of Calendar from Hostaway] → \n', error);
       return [];
     }
   }
@@ -150,4 +150,93 @@ export default class HostawayAPI {
     return [year, month, day].join('-');
   }
 
+  //===========================================================================================================
+
+  /**
+  * Retrieves a list of amenities from the Hostaway waebsite
+  * GET /amenities
+  *
+  * Link: https://api.hostaway.com/documentation?javascript#retrieve-an-amenities-list
+  */
+  public static async getAmenities(): Promise<TAmenity[]> {
+    // If there's no accessToken OR the token has expired, get a new token
+    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+      await HostawayAPI.init();
+    }
+    //------------------------------------------------
+    try {
+      const response = await axios.get(`${HostawayAPI.BASE}/amenities`, {
+        headers: {
+          'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
+          'Cache-control': 'no-cache'
+        }
+      });
+      //------------------------------------------------
+      // Return the data
+      return response.data.result;
+    } catch (error) {
+      console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
+      return [];
+    }
+  }
+
+  //===========================================================================================================
+
+  /**
+  * Retrieves a list of bed-types from the Hostaway waebsite
+  * GET /bedTypes
+  *
+  * Link: https://api.hostaway.com/documentation?javascript#retrieve-a-bed-types-list
+  */
+  public static async getBedTypes(): Promise<TBedType[]> {
+    // If there's no accessToken OR the token has expired, get a new token
+    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+      await HostawayAPI.init();
+    }
+    //------------------------------------------------
+    try {
+      const response = await axios.get(`${HostawayAPI.BASE}/bedTypes`, {
+        headers: {
+          'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
+          'Cache-control': 'no-cache'
+        }
+      });
+      //------------------------------------------------
+      // Return the data
+      return response.data.result;
+    } catch (error) {
+      console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
+      return [];
+    }
+  }
+
+  //===========================================================================================================
+
+  /**
+  * Retrieves a list of property-types from the Hostaway waebsite
+  * GET /propertyTypes
+  *
+  * Link: https://api.hostaway.com/documentation?javascript#property-types
+  */
+  public static async getPropertyTypes(): Promise<TPropertyType[]> {
+    // If there's no accessToken OR the token has expired, get a new token
+    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+      await HostawayAPI.init();
+    }
+    //------------------------------------------------
+    try {
+      const response = await axios.get(`${HostawayAPI.BASE}/propertyTypes`, {
+        headers: {
+          'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
+          'Cache-control': 'no-cache'
+        }
+      });
+      //------------------------------------------------
+      // Return the data
+      return response.data.result;
+    } catch (error) {
+      console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
+      return [];
+    }
+  }
 }

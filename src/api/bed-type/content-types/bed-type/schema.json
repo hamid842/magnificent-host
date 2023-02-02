@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bed_types",
+  "info": {
+    "singularName": "bed-type",
+    "pluralName": "bed-types",
+    "displayName": "BedType"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
