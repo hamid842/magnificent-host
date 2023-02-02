@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-02-02T07:07:33.841Z"
+    "x-generation-date": "2023-02-02T07:42:00.058Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -11865,17 +11865,8 @@
               "explanation": {
                 "type": "string"
               },
-              "interiorFeatures": {},
-              "externalFeatures": {},
-              "extraFeatures": {},
               "locationAndAccessibleInformation": {},
               "frequentTravelers": {},
-              "mapInfo": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LocationLocationComponent"
-                }
-              },
               "images": {
                 "type": "array",
                 "items": {
@@ -12000,17 +11991,8 @@
               "explanation": {
                 "type": "string"
               },
-              "interiorFeatures": {},
-              "externalFeatures": {},
-              "extraFeatures": {},
               "locationAndAccessibleInformation": {},
               "frequentTravelers": {},
-              "mapInfo": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LocationLocationComponent"
-                }
-              },
               "images": {
                 "type": "array",
                 "items": {
@@ -12600,17 +12582,8 @@
               "explanation": {
                 "type": "string"
               },
-              "interiorFeatures": {},
-              "externalFeatures": {},
-              "extraFeatures": {},
               "locationAndAccessibleInformation": {},
               "frequentTravelers": {},
-              "mapInfo": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LocationLocationComponent"
-                }
-              },
               "images": {
                 "type": "array",
                 "items": {
@@ -13233,17 +13206,8 @@
               "explanation": {
                 "type": "string"
               },
-              "interiorFeatures": {},
-              "externalFeatures": {},
-              "extraFeatures": {},
               "locationAndAccessibleInformation": {},
               "frequentTravelers": {},
-              "mapInfo": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LocationLocationComponent"
-                }
-              },
               "images": {
                 "type": "array",
                 "items": {
@@ -13833,17 +13797,8 @@
               "explanation": {
                 "type": "string"
               },
-              "interiorFeatures": {},
-              "externalFeatures": {},
-              "extraFeatures": {},
               "locationAndAccessibleInformation": {},
               "frequentTravelers": {},
-              "mapInfo": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LocationLocationComponent"
-                }
-              },
               "images": {
                 "type": "array",
                 "items": {
@@ -14424,35 +14379,6 @@
           },
           "meta": {
             "type": "object"
-          }
-        }
-      },
-      "LocationLocationComponent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "latitude": {
-            "type": "string"
-          },
-          "longitude": {
-            "type": "string"
-          },
-          "zoom": {
-            "type": "string"
-          },
-          "bearing": {
-            "type": "string"
-          },
-          "pitch": {
-            "type": "string"
-          },
-          "width": {
-            "type": "string"
-          },
-          "height": {
-            "type": "string"
           }
         }
       },

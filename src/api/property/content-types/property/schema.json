@@ -23,25 +23,11 @@
     "explanation": {
       "type": "text"
     },
-    "interiorFeatures": {
-      "type": "json"
-    },
-    "externalFeatures": {
-      "type": "json"
-    },
-    "extraFeatures": {
-      "type": "json"
-    },
     "locationAndAccessibleInformation": {
       "type": "json"
     },
     "frequentTravelers": {
       "type": "json"
-    },
-    "mapInfo": {
-      "type": "component",
-      "repeatable": true,
-      "component": "location.location"
     },
     "images": {
       "type": "component",
