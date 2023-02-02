@@ -55,8 +55,8 @@ export default class HostawayAPI {
   * Link: https://api.hostaway.com/documentation?javascript#retrieve-a-listings-list
   */
   public static async getListings(): Promise<TListing[]> {
-    // If there's no accessToken OR the token has expired, get a new token
-    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken ) {
       await HostawayAPI.init();
     }
     //------------------------------------------------
@@ -85,8 +85,8 @@ export default class HostawayAPI {
   * Link: https://api.hostaway.com/documentation?javascript#retrieve-a-listing
   */
   public static async getListing(listingId: number): Promise<TListing> {
-    // If there's no accessToken OR the token has expired, get a new token
-    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken) {
       await HostawayAPI.init();
     }
     //------------------------------------------------
@@ -116,8 +116,8 @@ export default class HostawayAPI {
   * Link: https://api.hostaway.com/documentation?javascript#retrieve-a-calendar
   */
   public static async getCalendar(listingId: number, startDate: Date, endDate: Date): Promise<TCalendar[]> {
-    // If there's no accessToken OR the token has expired, get a new token
-    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken ) {
       await HostawayAPI.init();
     }
     //------------------------------------------------
@@ -159,8 +159,8 @@ export default class HostawayAPI {
   * Link: https://api.hostaway.com/documentation?javascript#retrieve-an-amenities-list
   */
   public static async getAmenities(): Promise<TAmenity[]> {
-    // If there's no accessToken OR the token has expired, get a new token
-    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken) {
       await HostawayAPI.init();
     }
     //------------------------------------------------
@@ -189,8 +189,8 @@ export default class HostawayAPI {
   * Link: https://api.hostaway.com/documentation?javascript#retrieve-a-bed-types-list
   */
   public static async getBedTypes(): Promise<TBedType[]> {
-    // If there's no accessToken OR the token has expired, get a new token
-    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken) {
       await HostawayAPI.init();
     }
     //------------------------------------------------
@@ -219,8 +219,8 @@ export default class HostawayAPI {
   * Link: https://api.hostaway.com/documentation?javascript#property-types
   */
   public static async getPropertyTypes(): Promise<TPropertyType[]> {
-    // If there's no accessToken OR the token has expired, get a new token
-    if (!HostawayAPI.accessToken || HostawayAPI.accessToken.expires_in >= new Date().getTime()) {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken) {
       await HostawayAPI.init();
     }
     //------------------------------------------------
