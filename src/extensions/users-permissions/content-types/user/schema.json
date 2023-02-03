@@ -68,6 +68,18 @@
       "relation": "oneToMany",
       "target": "api::booking.booking",
       "mappedBy": "customer"
+    },
+    "guests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::guest.guest",
+      "mappedBy": "user"
+    },
+    "hosts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::host.host",
+      "mappedBy": "user"
     }
   }
 }

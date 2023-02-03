@@ -4,7 +4,8 @@
   "info": {
     "singularName": "guest",
     "pluralName": "guests",
-    "displayName": "Guest"
+    "displayName": "Guest",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,6 +24,18 @@
     },
     "additionalInformation": {
       "type": "text"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "guests"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "guest"
     }
   }
 }

@@ -118,6 +118,12 @@
       "type": "component",
       "repeatable": false,
       "component": "property.geolocation"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "property"
     }
   }
 }

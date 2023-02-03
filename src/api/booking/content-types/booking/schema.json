@@ -35,6 +35,18 @@
       "relation": "oneToMany",
       "target": "api::payment.payment",
       "mappedBy": "booking"
+    },
+    "guest": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::guest.guest",
+      "inversedBy": "bookings"
+    },
+    "property": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::property.property",
+      "inversedBy": "bookings"
     }
   }
 }
