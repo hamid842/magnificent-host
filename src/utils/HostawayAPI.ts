@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import moment from 'moment';
 import querystring from 'querystring';
-import { TAmenity, TBedType, TCalendar, TListing, TPropertyType, TReservation } from './APITypes';
+import { DATE_FORMAT, TAmenity, TBedType, TCalendar, TListing, TPropertyType, TReservation } from './APITypes';
 
 /**
  * + 'status' can be one of:
@@ -150,8 +151,8 @@ export default class HostawayAPI {
     try {
       const response: IAxiosResponse = await axios.get(`${HostawayAPI.BASE}/listings/${listingId}/calendar`, {
         params: {
-          startDate: HostawayAPI.formatDate(startDate),
-          endDate: HostawayAPI.formatDate(endDate),
+          startDate: HostawayAPI.getFormattedDate(startDate),
+          endDate: HostawayAPI.getFormattedDate(endDate),
         },
         headers: {
           'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
@@ -169,14 +170,9 @@ export default class HostawayAPI {
     }
   }
 
-  private static formatDate(date: Date): string {
-    let month = '' + (date.getMonth() + 1);
-    let day = '' + date.getDate();
-    let year = date.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
-  }
+  private static getFormattedDate(date: Date): string {
+    return moment(date).format(DATE_FORMAT);
+  };
 
   //===========================================================================================================
 
