@@ -124,6 +124,12 @@
       "relation": "oneToMany",
       "target": "api::booking.booking",
       "mappedBy": "property"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "property"
     }
   }
 }
