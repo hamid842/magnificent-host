@@ -1,3 +1,12 @@
+/**
+ * NOTES:
+ *    -boolean type should be considered as integer 0 or 1 value
+ *    -all time values should be specified in UTC timezone (except for 'checkInTimeStart', 'checkInTimeEnd' and 'checkOutTime' fields of Listing object, which have to be specified in listing’s local timezone)
+ *    -all country code values are ISO 3166-2 standard
+ */
+
+//===========================================================================================================
+
 export type TListing = {
   // Some fields which is marked by asterisk (*) are required to change listing status to complete.
   //-----------------------------
@@ -43,9 +52,9 @@ export type TListing = {
   maxPetsAllowed?: number,
   lat?: number, // float - Latitude.
   lng?: number, // float - Longitude.
-  checkInTimeStart?: number, // Accepted values are 0-23
-  checkInTimeEnd?: number, // Accepted values are 0-23
-  checkOutTime?: number, // Accepted values are 0-23
+  checkInTimeStart?: number, // Accepted values are 0-23 |  *have to be specified in listing’s local timezone
+  checkInTimeEnd?: number, // Accepted values are 0-23 |  *have to be specified in listing’s local timezone
+  checkOutTime?: number, // Accepted values are 0-23 |  *have to be specified in listing’s local timezone
   cancellationPolicy?: string, // One of: flexible, moderate, strict.
   cancellationPolicyId?: number, // The policy that applies to OTA bookings. For cancellation policies that apply in direct channels please use the Cancellation policies endpoint
   airBnbCancellationPolicyId?: number, // The policy that applies to Airbnb bookings. Airbnb cancellation policies
@@ -80,7 +89,7 @@ export type TListing = {
   wifiPassword?: string,
   cleannessStatus?: string,
   cleaningInstruction?: string,
-  cleannessStatusUpdatedOn?:	Date | string, // datetime
+  cleannessStatusUpdatedOn?:	string, // datetime
   homeawayPropertyName?: string,
   homeawayPropertyHeadline?: string,
   homeawayPropertyDescription?: string,
@@ -97,8 +106,8 @@ export type TListing = {
   invoicingContactCountry?: string,
   propertyLicenseNumber?: string,
   propertyLicenseType?: string,
-  propertyLicenseIssueDate?:	Date | string, // (YYYY-MM-DD)
-  propertyLicenseExpirationDate?:	Date | string, // (YYYY-MM-DD)
+  propertyLicenseIssueDate?:	string, // Date - (YYYY-MM-DD)
+  propertyLicenseExpirationDate?:	string, // Date - (YYYY-MM-DD)
   partnersListingMarkup?: number, // float
   isRentalAgreementActive?: boolean | number,
   listingAgreementText?: string, // Text for Rental Agreement, set null to delete Agreement.
@@ -108,30 +117,40 @@ export type TListing = {
   customFieldValues?: { customFieldId: number, value: string }[], // You should create Custom fields at the dashboard beforehand
 };
 
+//===========================================================================================================
+
 // Property of Listing
 export type TListingAmenity = { id: number, amenityId: number };
+
+//===========================================================================================================
 
 // Property of Listing
 export type TListingBedType = { id: number, bedTypeId: number, quantity: number };
 
+//===========================================================================================================
+
 // Property of Listing
 export type TListingImage = { id: number, caption?: string, url: string, sortOrder?: number };
 
+//===========================================================================================================
 //===========================================================================================================
 
 // API + DB Entity
 export type TAmenity = { id: number, name: string };
 
 //===========================================================================================================
+//===========================================================================================================
 
 // API + DB Entity
 export type TBedType = { id: number, name: string };
 
 //===========================================================================================================
+//===========================================================================================================
 
 // API + DB Entity
 export type TPropertyType = { id: number, name: string };
 
+//===========================================================================================================
 //===========================================================================================================
 
 // Property of Calendar
@@ -140,7 +159,7 @@ export type TCalendar = {
   // Required Fields
   //-----------------------------
   id: number,
-  date: string | Date,
+  date: string, // Date - (YYYY-MM-DD)
   //-----------------------------
   // Optional Fields
   //-----------------------------
@@ -162,6 +181,8 @@ export type TCalendar = {
   reservations?: TReservation[],
 };
 
+//===========================================================================================================
+
 export enum ECalendarDayStatuses {
   AVAILABLE = 'available',
   BLOCKED = 'blocked',
@@ -174,6 +195,7 @@ export enum ECalendarDayStatuses {
 };
 
 //===========================================================================================================
+//===========================================================================================================
 
 export type TReservation = {
   //-----------------------------
@@ -181,9 +203,9 @@ export type TReservation = {
   //-----------------------------
   id: number, // Unique ID of the reservation on Hostaway
   listingMapId: number, // Identifier of listing object.
-  channelId: number, // Value can be set to one of the following: 2000 for a direct reservation, 2020 for a Partner reservation
-  arrivalDate: Date | string,
-  departureDate: Date | string,
+  channelId: number | EChannelId, // Value can be set to one of the following: 2000 for a direct reservation, 2020 for a Partner reservation
+  arrivalDate: string, // Date - (YYYY-MM-DD)
+  departureDate: string, // Date - (YYYY-MM-DD)
   channelName: string, // Channel name (Airbnb, Booking.com, Expedia, Vrbo etc.)
   reservationId: string, // Reservation ID value which gets from the channel (Airbnb, Booking.com, Expedia, Vrbo etc.)
   hostawayReservationId: number, // Unique ID of the reservation on Hostaway (the same value as ID)
@@ -202,8 +224,8 @@ export type TReservation = {
   isManuallyChecked?: boolean | number,
   isInstantBooked?: boolean | number,
   hasPullError?: boolean | number,
-  reservationDate?: Date | string,
-  pendingExpireDate?: Date | string,
+  reservationDate?: string, // Date - (YYYY-MM-DD)
+  pendingExpireDate?: string, // Date - (YYYY-MM-DD)
   guestName?: string,
   guestFirstName?: string, // Guest first name
   guestLastName?: string, // Guest last name
@@ -230,8 +252,8 @@ export type TReservation = {
   infants?: number,
   pets?: number,
   isDatesUnspecified?: number, // Set to 1 in case a channel doesn’t provide reservation dates. If it is 1 arrivalDate and departureDate are set to yesterday.
-  previousArrivalDate?: Date | string,
-  previousDepartureDate?: Date | string,
+  previousArrivalDate?: string, // Date - (YYYY-MM-DD)
+  previousDepartureDate?: string, // Date - (YYYY-MM-DD)
   checkInTime?: number,
   checkOutTime?: number,
   nights?: number,
@@ -246,8 +268,8 @@ export type TReservation = {
   paymentMethod?: string,
   stripeGuestId?: string,
   currency?: string,
-  status?: string, // Can be one of the following: new, modified, cancelled, ownerStay, pending, awaitingPayment, declined, expired, inquiry, inquiryPreapproved, inquiryDenied, inquiryTimedout, inquiryNotPossible
-  cancellationDate?: Date | string,
+  status?: string | EReservationStatuses, // Can be one of the following: new, modified, cancelled, ownerStay, pending, awaitingPayment, declined, expired, inquiry, inquiryPreapproved, inquiryDenied, inquiryTimedout, inquiryNotPossible
+  cancellationDate?: string, // Date - (YYYY-MM-DD)
   cancelledBy?: string, // Can be one of the following: guest, host
   hostNote?: string,
   guestNote?: string,
@@ -274,11 +296,95 @@ export type TReservation = {
   guestAuthHash?: string,
   guestPortalUrl?: string,
   originalChannel?: string,
-  latestActivityOn?: Date | string,
+  latestActivityOn?: string, // Date - (YYYY-MM-DD)
   customerUserId?: string,
   reservationAgreement?: string, // Can be one of the following: not_required, signed, not_signed
   rentalAgreementFileUrl?: string, // Link to pdf file with signed Rental Agreement
   customFieldValues?:	{ customFieldId: number, value: string }[], // You should create Custom fields at the dashboard beforehand
-  // reservationFees?:	array, // Array of reservationFee objects (will be empty array if includeResources parameter is set to 0).
-  // reservationUnit?:	array, // Array of reservationUnit objects (will be empty array if includeResources parameter is set to 0 or reservation is not multi unit).
+  reservationFees?:	TReservationFee[], // Array of reservationFee objects (will be empty array if includeResources parameter is set to 0).
+  reservationUnit?:	TReservationUnit[], // Array of reservationUnit objects (will be empty array if includeResources parameter is set to 0 or reservation is not multi unit).
 };
+
+//===========================================================================================================
+
+export enum EChannelId {
+  DIRECT_RESERVATION = 2000,
+  PARTNER_RESERVATION = 2020,
+};
+
+//===========================================================================================================
+
+export enum EReservationStatuses {
+  NEW = 'new', // New reservation, blocks calendar
+  MODIFIED = 'modified', // Reservation that has dates, guests, listing or pricing modified. Blocks calendar
+  CANCELLED = 'cancelled', // Reservation cancelled by either host or guest. Does not block calendar
+  OWNER_STAY = 'ownerStay', // Hostaway specific status for reservations created by Owners that wish to block their properties usually because they plan to stay in them
+  PENDING = 'pending', // Airbnb only: for those clients using Airbnb’s Request to Book functionality. Client needs to approve or decline the reservation. If approved, the status will change to new. If declined, the status wil be expired
+  AWAITING_PAYMENT = 'awaitingPayment', // Airbnb only: Intermediary reservation states that require guest action (no host action). If the guest fails to complete their tasks, this would result in status cancelled, otherwise status will be new. This status blocks the calendar
+  DECLINED = 'declined', // Airbnb only as a result of declining a Request to Book reservation (pending)
+  EXPIRED = 'expired', // As explained in row 5
+  UNCONFIRMED = 'unconfirmed', // Vrbo only: similar to pending status for those clients that use Vrbo Request to Book functionality. Client needs to approve or decline the reservation. If approved the status will change to new, if declined it will change to cancelled
+  AWAITING_GUEST_VERIFICATION = 'awaitingGuestVerification', // Airbnb only: Intermediary reservation states that require guest action (no host action). If the guest fails to complete their tasks, this would result in status cancelled, otherwise status will be new. This status blocks the calendar
+  INQUIRY = 'inquiry', // Reservation status representing a guest question which doesn’t block the calendar
+  INQUIRY_PREAPPROVED = 'inquiryPreapproved', // Airbnb only: Hosts can preapprove the guest to encourage reservation. The host will have 24 hours to confirm their reservation. If they don’t the reservation will show status inquiryTimeout. The host can also decline the inquriy and the reservation will have status inquiryNotPossible.
+  INQUIRY_DENIED = 'inquiryDenied', // Airbnb only: If a host does not preapprove a guest they will receive a simple inquiry. Hosts will still have 24 to approve or deny de inquiry. If approved it will become a new reservation. If declined it will show status inquiryDenied
+  INQUIRY_TIMEOUT = 'inquiryTimedout', // as explained in row 13
+  INQUIRY_NOT_POSSIBLE = 'inquiryNotPossible', // as explained in row 13
+  UNKNOWN = 'unknown', // Airbnb only: something made the inquiry fail.
+};
+
+//===========================================================================================================
+
+// Property of Reservation
+export type TReservationFee = {
+  //-----------------------------
+  // Required Fields
+  //-----------------------------
+  accountId:number, // int - ID of related Account
+  listingMapId:number, // int - ID of related ListingMap
+  reservationId:number, // int - ID of related Reservation
+  name: string, //  	Fee name, different set of fee names is used for each channel
+  insertedOn: string, // datetime - Date and time when fee was inserted
+  updatedOn: string, // datetime - Date and time when fee was updated
+  //-----------------------------
+  // Optional Fields
+  //-----------------------------
+  amount?: number, // decimal - Fee amount
+  currency?: string, // Currency code
+  percentage?:number, // int - Fee percentage (0-100) from reservation total amount
+  isIncluded?:number, // int - 1 - amount already included to reservation total amount, 0 - not included
+  isPerNight?:number, // int - 1 - amount is applied per-night, 0 - per reservation
+  isPerPerson?:number, // int - 1 - amount is applied for each guests, 0 - for all guests
+  isImported?:number, // int - 1 - reservation fee was created during initial reservations import, 0 - was created by channel
+};
+
+//===========================================================================================================
+
+// Property of Reservation
+/**
+ * This object needs only for multi unit reservation. There can be several reservationUnit objects in one reservation.
+ */
+export type TReservationUnit = {
+  //-----------------------------
+  // Required Fields
+  //-----------------------------
+  reservationId: number, // int - ID of related Reservation
+  listingUnitId: number, // int - ID of related ListingUnit
+  guestName: string, // Guest name
+  numberOfGuests: number, // int - Number of guests
+  adults: number, // int - Number of adults
+  children: number, // int - Number of children
+  infants: number, // int - Number of infants
+  totalPrice: number, // float - Total price of this reservation unit
+  //-----------------------------
+  // Optional Fields
+  //-----------------------------
+  externalReservationId?: string, // External reservation ID
+  externalReservationUnitId?:string, // External reservation unit ID
+  guestFirstName?: string, // Guest first name
+  guestLastName?: string, // Guest last name
+  pets?: number, // int - Number of pets
+};
+
+//===========================================================================================================
+//===========================================================================================================

@@ -1,6 +1,28 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import querystring from 'querystring';
-import { TAmenity, TBedType, TCalendar, TListing, TPropertyType } from './APITypes';
+import { TAmenity, TBedType, TCalendar, TListing, TPropertyType, TReservation } from './APITypes';
+
+/**
+ * + 'status' can be one of:
+ *    - 'success' if case of no errors occurred or
+ *    - 'fail' in case of any error.
+ * + 'result' contains:
+ *    - endpoint result if no errors
+ *    - an error message string if status is fail.
+ */
+type TResponse = {
+  status: 'success' | 'fail',
+  result: any | string,
+};
+
+interface IAxiosResponse {
+  data: TResponse;
+  status: number;
+  statusText: string;
+  headers: any;
+  config: AxiosRequestConfig;
+  request?: any;
+}
 
 export default class HostawayAPI {
   private static accessToken: { expires_in: number, access_token: string} | undefined;
@@ -61,14 +83,16 @@ export default class HostawayAPI {
     }
     //------------------------------------------------
     try {
-      const response = await axios.get(`${HostawayAPI.BASE}/listings`, {
+      const response: IAxiosResponse = await axios.get(`${HostawayAPI.BASE}/listings`, {
         headers: {
           'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
           'Cache-control': 'no-cache'
         }
       });
       //------------------------------------------------
-      // Return the data
+      // Handle API Error response
+      if (response.data.status === 'fail') throw new Error(response.data.result);
+      // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
       console.log('[Error while retrieving a list of Listings from Hostaway] → \n', error);
@@ -91,14 +115,16 @@ export default class HostawayAPI {
     }
     //------------------------------------------------
     try {
-      const response = await axios.get(`${HostawayAPI.BASE}/listings/${listingId}`, {
+      const response: IAxiosResponse = await axios.get(`${HostawayAPI.BASE}/listings/${listingId}`, {
         headers: {
           'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
           'Cache-control': 'no-cache'
         }
       });
       //------------------------------------------------
-      // Return the data
+      // Handle API Error response
+      if (response.data.status === 'fail') throw new Error(response.data.result);
+      // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
       console.log('[Error while retrieving a Listing from Hostaway] → \n', error);
@@ -122,7 +148,7 @@ export default class HostawayAPI {
     }
     //------------------------------------------------
     try {
-      const response = await axios.get(`${HostawayAPI.BASE}/listings/${listingId}/calendar`, {
+      const response: IAxiosResponse = await axios.get(`${HostawayAPI.BASE}/listings/${listingId}/calendar`, {
         params: {
           startDate: HostawayAPI.formatDate(startDate),
           endDate: HostawayAPI.formatDate(endDate),
@@ -133,7 +159,9 @@ export default class HostawayAPI {
         }
       });
       //------------------------------------------------
-      // Return the data
+      // Handle API Error response
+      if (response.data.status === 'fail') throw new Error(response.data.result);
+      // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
       console.log('[Error while retrieving a list of Calendar from Hostaway] → \n', error);
@@ -165,14 +193,16 @@ export default class HostawayAPI {
     }
     //------------------------------------------------
     try {
-      const response = await axios.get(`${HostawayAPI.BASE}/amenities`, {
+      const response: IAxiosResponse = await axios.get(`${HostawayAPI.BASE}/amenities`, {
         headers: {
           'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
           'Cache-control': 'no-cache'
         }
       });
       //------------------------------------------------
-      // Return the data
+      // Handle API Error response
+      if (response.data.status === 'fail') throw new Error(response.data.result);
+      // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
       console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
@@ -195,14 +225,16 @@ export default class HostawayAPI {
     }
     //------------------------------------------------
     try {
-      const response = await axios.get(`${HostawayAPI.BASE}/bedTypes`, {
+      const response: IAxiosResponse = await axios.get(`${HostawayAPI.BASE}/bedTypes`, {
         headers: {
           'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
           'Cache-control': 'no-cache'
         }
       });
       //------------------------------------------------
-      // Return the data
+      // Handle API Error response
+      if (response.data.status === 'fail') throw new Error(response.data.result);
+      // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
       console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
@@ -225,18 +257,60 @@ export default class HostawayAPI {
     }
     //------------------------------------------------
     try {
-      const response = await axios.get(`${HostawayAPI.BASE}/propertyTypes`, {
+      const response: IAxiosResponse = await axios.get(`${HostawayAPI.BASE}/propertyTypes`, {
         headers: {
           'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
           'Cache-control': 'no-cache'
         }
       });
       //------------------------------------------------
-      // Return the data
+      // Handle API Error response
+      if (response.data.status === 'fail') throw new Error(response.data.result);
+      // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
       console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
       return [];
     }
   }
+
+  //===========================================================================================================
+
+  /**
+  * Create a Reservation on the Hostaway waebsite
+  * POST /reservations
+  *
+  * Query parameters {
+  *   forceOverbooking:	(optional) - int[0,1] | boolean - Ignore overbooking protection
+  * }
+  *
+  * Link: https://api.hostaway.com/documentation#create-a-reservation
+  */
+    public static async createReservation(reservation: TReservation, forceOverbooking: boolean = true): Promise<TReservation> {
+      // If there's no accessToken, get a new token
+      if (!HostawayAPI.accessToken ) {
+        await HostawayAPI.init();
+      }
+      //------------------------------------------------
+      try {
+        const forceOverbookingParam: string = (forceOverbooking ? '1' : '0');
+        const response: IAxiosResponse = await axios.post(`${HostawayAPI.BASE}/reservations?forceOverbooking=${forceOverbookingParam}`,
+        JSON.stringify(reservation),
+        {
+          headers: {
+            'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
+            'Cache-control': 'no-cache',
+            'Content-Type': 'application/json',
+          }
+        });
+        //------------------------------------------------
+      // Handle API Error response
+      if (response.data.status === 'fail') throw new Error(response.data.result);
+      // Successful request -> Return the data
+        return response.data.result;
+      } catch (error) {
+        console.log('[Error while creating a Reservation on Hostaway] → \n', error);
+        return null;
+      }
+    }
 }
