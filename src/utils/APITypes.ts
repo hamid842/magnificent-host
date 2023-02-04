@@ -7,6 +7,10 @@
 
 //===========================================================================================================
 
+export type TBoolean = 0 | 1;
+
+//===========================================================================================================
+
 export type TListing = {
   // Some fields which is marked by asterisk (*) are required to change listing status to complete.
   //-----------------------------
@@ -70,7 +74,7 @@ export type TListing = {
   minNights?: number,
   maxNights?: number,
   cleaningFee?: number, // float
-  instantBookable?: boolean | number,
+  instantBookable?: TBoolean,
   instantBookableLeadTime?: number,
   airbnbBookingLeadTime?: number,
   airbnbBookingLeadTimeAllowRequestToBook?: number,
@@ -109,7 +113,7 @@ export type TListing = {
   propertyLicenseIssueDate?:	string, // Date - (YYYY-MM-DD)
   propertyLicenseExpirationDate?:	string, // Date - (YYYY-MM-DD)
   partnersListingMarkup?: number, // float
-  isRentalAgreementActive?: boolean | number,
+  isRentalAgreementActive?: TBoolean,
   listingAgreementText?: string, // Text for Rental Agreement, set null to delete Agreement.
   listingAmenities?: TListingAmenity[], // Array of listingAmenity objects.
   listingBedTypes?: TListingBedType[], // Array of listingBedType objects.
@@ -163,14 +167,14 @@ export type TCalendar = {
   //-----------------------------
   // Optional Fields
   //-----------------------------
-  isAvailable?: boolean | number, // It’s used to block/unblock single unit listings
-  isProcessed?: boolean | number, // It’s an internal informational field to show if the calendar was successfully pushed to all connected channels.
+  isAvailable?: TBoolean, // It’s used to block/unblock single unit listings
+  isProcessed?: TBoolean, // It’s an internal informational field to show if the calendar was successfully pushed to all connected channels.
   status?: ECalendarDayStatuses | string, // List of acceptable statuses can be found here: https://api.hostaway.com/dictionary/calendarDay
   price?: number,
   minimumStay?: number,
   maximumStay?: number,
-  closedOnArrival?: boolean | number,
-  closedOnDeparture?: boolean | number,
+  closedOnArrival?: TBoolean,
+  closedOnDeparture?: TBoolean,
   note?: string,
   countAvailableUnits?: number, // How many units of this unit type exist (max available, only for multi unit listing)
   availableUnitsToSell?: number, // How many units are left (available) to sell (only for multi unit listing)
@@ -220,10 +224,10 @@ export type TReservation = {
   assigneeUserId?: number,
   manualIcalId?: string,
   manualIcalName?: string,
-  isProcessed?: boolean | number,
-  isManuallyChecked?: boolean | number,
-  isInstantBooked?: boolean | number,
-  hasPullError?: boolean | number,
+  isProcessed?: TBoolean,
+  isManuallyChecked?: TBoolean,
+  isInstantBooked?: TBoolean,
+  hasPullError?: TBoolean,
   reservationDate?: string, // Date - (YYYY-MM-DD)
   pendingExpireDate?: string, // Date - (YYYY-MM-DD)
   guestName?: string,
@@ -239,13 +243,13 @@ export type TReservation = {
   guestRecommendations?: number,
   guestTrips?: number,
   guestWork?: string,
-  isGuestIdentityVerified?: boolean | number,
-  isGuestVerifiedByEmail?: boolean | number,
-  isGuestVerifiedByWorkEmail?: boolean | number,
-  isGuestVerifiedByFacebook?: boolean | number,
-  isGuestVerifiedByGovernmentId?: boolean | number,
-  isGuestVerifiedByPhone?: boolean | number,
-  isGuestVerifiedByReviews?: boolean | number,
+  isGuestIdentityVerified?: TBoolean,
+  isGuestVerifiedByEmail?: TBoolean,
+  isGuestVerifiedByWorkEmail?: TBoolean,
+  isGuestVerifiedByFacebook?: TBoolean,
+  isGuestVerifiedByGovernmentId?: TBoolean,
+  isGuestVerifiedByPhone?: TBoolean,
+  isGuestVerifiedByReviews?: TBoolean,
   numberOfGuests?: number,
   adults?: number,
   children?: number,
@@ -264,7 +268,7 @@ export type TReservation = {
   hostawayCommissionAmount?: number, // float
   cleaningFee?: number, // float
   securityDepositFee?: number, // float
-  isPaid?: boolean | number,
+  isPaid?: TBoolean,
   paymentMethod?: string,
   stripeGuestId?: string,
   currency?: string,
@@ -290,9 +294,9 @@ export type TReservation = {
   airbnbTotalPaidAmount?: number, // float
   airbnbTransientOccupancyTaxPaidAmount?: number, // float
   airbnbCancellationPolicy?: string,
-  isStarred?: boolean | number,
-  isArchived?: boolean | number,
-  isPinned?: boolean | number,
+  isStarred?: TBoolean,
+  isArchived?: TBoolean,
+  isPinned?: TBoolean,
   guestAuthHash?: string,
   guestPortalUrl?: string,
   originalChannel?: string,
