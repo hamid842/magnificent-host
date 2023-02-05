@@ -39,7 +39,8 @@ export const saveAPIListing = async (apiListing: TListing, skipIfExists: boolean
           return {
             id: item.id,
             caption: item.caption,
-            url: item.url,
+            url: `${item.url}-small`,
+            url_original: item.url,
             sortOrder: item.sortOrder
           }
         }),
