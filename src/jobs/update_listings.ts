@@ -4,6 +4,7 @@ export default {
   /**
   * Shallow Search: Just see if the id of the listing exists, if not create it
   * Run this job every 1 Minute(s)
+  * TODO: MOVE IN PRODUCTION
   */
   '*/1 * * * *': async ({ strapi }) => {
     //-------------------------------------------------------------------------------------------------
