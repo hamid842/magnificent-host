@@ -1,0 +1,122 @@
+{
+  "kind": "collectionType",
+  "collectionName": "new_properties",
+  "info": {
+    "singularName": "new-property",
+    "pluralName": "new-properties",
+    "displayName": "NewProperty"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "generalInformation": {
+      "type": "json",
+      "required": true
+    },
+    "explanation": {
+      "type": "text"
+    },
+    "locationAndAccessibleInformation": {
+      "type": "json"
+    },
+    "frequentTravelers": {
+      "type": "json"
+    },
+    "images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "property.image"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "property.address",
+      "required": false
+    },
+    "price": {
+      "type": "float"
+    },
+    "minNights": {
+      "type": "integer"
+    },
+    "maxNights": {
+      "type": "integer"
+    },
+    "guestsIncluded": {
+      "type": "integer"
+    },
+    "priceForExtraPerson": {
+      "type": "float"
+    },
+    "currencyCode": {
+      "type": "string"
+    },
+    "personCapacity": {
+      "type": "integer"
+    },
+    "checkInTimeStart": {
+      "type": "integer",
+      "max": 23,
+      "min": 0
+    },
+    "checkInTimeEnd": {
+      "type": "integer",
+      "max": 23,
+      "min": 0
+    },
+    "checkOutTime": {
+      "type": "integer",
+      "max": 23,
+      "min": 0
+    },
+    "squareMeters": {
+      "type": "integer"
+    },
+    "roomType": {
+      "type": "string"
+    },
+    "bathroomType": {
+      "type": "string"
+    },
+    "bedroomsNumber": {
+      "type": "integer"
+    },
+    "bedsNumber": {
+      "type": "integer"
+    },
+    "bathroomsNumber": {
+      "type": "integer"
+    },
+    "contact": {
+      "type": "component",
+      "repeatable": false,
+      "component": "property.contact"
+    },
+    "property_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::property-type.property-type"
+    },
+    "amenities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::amenity.amenity"
+    },
+    "bed_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::bed-type.bed-type"
+    },
+    "geolocation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "property.geolocation"
+    }
+  }
+}
