@@ -396,3 +396,70 @@ export type TReservationUnit = {
 
 //===========================================================================================================
 //===========================================================================================================
+
+export type TReservationPriceCalculationRequest = {
+  //-----------------------------
+  // Required Fields
+  //-----------------------------
+  startingDate: string, // date -	Arrival date
+  endingDate:	string, // date -	Departure date
+  numberOfGuests:	number, // int -	Number of guest
+  version: 2, // int -	Please use version 2 (version = 2)
+  //-----------------------------
+  // Optional Fields
+  //-----------------------------
+  markup?: number, // float -	Markup must be more then 1.0
+  reservationCouponId?: number, // int -	Reservation Coupon ID
+};
+
+//===========================================================================================================
+
+export type TReservationPriceCalculationResponse = {
+  totalPrice: number, // float -	Calculated total price
+  components:	TReservationPriceComponent[], //	Price components
+};
+
+//===========================================================================================================
+
+export type TReservationPriceComponent = {
+  //-----------------------------
+  // Required Fields
+  //-----------------------------
+  type: string, // Type of component (price, tax, fee, discount)
+  name: string, // Name of component
+  title: string, // Title of component
+  alias: string, // Alias of component
+  value: number, // float - Price of component
+  total: number, // float - Total amount of component
+  isIncludedInTotalPrice: number, // int - Included or not included in total price
+  isOverriddenByUser: number, // int - Is component changed or not by the client
+  isMandatory: number, // int - Сomponent is mandatory for creating reservation or not
+  isDeleted: number, // int -	Сomponent is deleted or not by the client
+  //-----------------------------
+  // Optional Fields
+  //-----------------------------
+  listingFeeSettingId?:	number,	// int - Listing fee setting ID
+  quantity?:	number,	// int - Quantity of component (only if component is quantity selectable)
+};
+
+//===========================================================================================================
+//===========================================================================================================
+
+export type TCreateReservationCouponRequest = {
+  couponName:	string, // Coupon name
+  listingMapId:	number, // int - Listing ID
+  startingDate: string, // date - Arrival date
+  //-----------------------------
+  // Optional Fields
+  //-----------------------------
+  endingDate?: string, // date - Departure date
+};
+
+//===========================================================================================================
+
+export type TCreateReservationCouponResponse = {
+  reservationCouponId: number, // int	- ReservationCoupon ID object
+};
+
+//===========================================================================================================
+//===========================================================================================================

@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import moment from 'moment';
 import querystring from 'querystring';
-import { DATE_FORMAT, TAmenity, TBedType, TCalendar, TListing, TPropertyType, TReservation } from './APITypes';
+import { DATE_FORMAT, TAmenity, TBedType, TCalendar, TCreateReservationCouponRequest, TCreateReservationCouponResponse, TListing, TPropertyType, TReservation, TReservationPriceCalculationRequest, TReservationPriceCalculationResponse } from './APITypes';
 
 /**
  * + 'status' can be one of:
@@ -309,4 +309,119 @@ export default class HostawayAPI {
         return null;
       }
     }
+
+  //===========================================================================================================
+
+  /**
+  * Get Reservation Price Details (Reservation Price Calculator)
+  * POST /listings/{listingId}/calendar/priceDetails
+  *
+  *
+  * Link: https://api.hostaway.com/documentation?javascript#reservation-price-calculation
+  */
+  public static async calculateReservationPrice(
+      listingId: number,
+      startingDate: Date,
+      endingDate: Date,
+      numberOfGuests: number,
+      couponName?: string
+    ): Promise<TReservationPriceCalculationResponse> {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken ) {
+      await HostawayAPI.init();
+    }
+    //------------------------------------------------
+    // If a coupon name is provided, get the couponId from the Hostaway API
+    let couponId = null;
+    if (typeof(couponName) !== 'undefined' && couponName.trim() !== '') {
+      const couponResponse: TCreateReservationCouponResponse = await HostawayAPI.getCouponId(couponName, listingId, startingDate, endingDate);
+      if (couponResponse) couponId = couponResponse.reservationCouponId;
+    }
+    //------------------------------------------------
+    const data: TReservationPriceCalculationRequest = {
+      startingDate: HostawayAPI.getFormattedDate(startingDate),
+      endingDate: HostawayAPI.getFormattedDate(endingDate),
+      numberOfGuests: numberOfGuests,
+      version: 2,
+    };
+
+    // If there's a couponId, add it to the request object
+    if (couponId) {
+      data.reservationCouponId = couponId;
+    }
+
+    try {
+      const response: IAxiosResponse = await axios.post(`${HostawayAPI.BASE}/listings/${listingId}/calendar/priceDetails`,
+      JSON.stringify(data),
+      {
+        headers: {
+          'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
+          'Cache-control': 'no-cache',
+          'Content-Type': 'application/json',
+        }
+      });
+      //------------------------------------------------
+    // Handle API Error response
+    if (response.data.status === 'fail') throw new Error(response.data.result);
+    // Successful request -> Return the data
+      return response.data.result;
+    } catch (error) {
+      console.log('[Error while getting Reservation Price Details from Hostaway] → \n', error);
+      return null;
+    }
+  }
+
+  /**
+  * Get the couponId from Hostaway
+  * POST /reservationCoupons
+  *
+  *
+  * Link: https://api.hostaway.com/documentation?javascript#create-reservation-coupon-object
+  */
+  private static async getCouponId(
+    couponName: string,
+    listingId: number,
+    startingDate: Date,
+    endingDate?: Date
+  ): Promise<TCreateReservationCouponResponse> {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken ) {
+      await HostawayAPI.init();
+    }
+    //------------------------------------------------
+    try {
+      const data: TCreateReservationCouponRequest = {
+        couponName: couponName,
+        listingMapId: listingId,
+        startingDate: HostawayAPI.getFormattedDate(startingDate),
+      };
+
+      // If endingDate was provided, add it to the request object
+      if (typeof(endingDate) !== 'undefined') {
+        data.endingDate = HostawayAPI.getFormattedDate(endingDate);
+      }
+      //------------------------------------------------
+      const response: IAxiosResponse = await axios.post(`${HostawayAPI.BASE}/reservationCoupons`,
+      JSON.stringify(data),
+      {
+        headers: {
+          'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
+          'Cache-control': 'no-cache',
+          'Content-Type': 'application/json',
+        }
+      });
+      //------------------------------------------------
+    // Handle API Error response
+    if (response.data.status === 'fail') throw new Error(response.data.result);
+    // Successful request -> Return the data
+      return response.data.result;
+    } catch (error) {
+      console.log('[Error while getting a CouponId from Hostaway] → \n', error);
+      return null;
+    }
+  }
+
+  //===========================================================================================================
+
 }
+
