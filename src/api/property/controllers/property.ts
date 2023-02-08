@@ -3,7 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi'
-import { TCalendar, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
+import { TBoolean, TCalendar, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
 import HostawayAPI from '../../../utils/HostawayAPI';
 
 export default factories.createCoreController('api::property.property', ({ strapi }) =>  ({
@@ -22,7 +22,15 @@ export default factories.createCoreController('api::property.property', ({ strap
       new Date(startDate),
       new Date(endDate)
       );
-    return calendar;
+
+    // We just need a summary info of the date and status, so we remove unnecessary info
+    const slimCalendar: { date: string, isAvailable: TBoolean }[] = calendar.map((item: TCalendar) => {
+      return {
+        date: item.date,
+        isAvailable: item.isAvailable
+      };
+    });
+    return slimCalendar;
   },
 
   //=======================================================================================================
