@@ -9,11 +9,12 @@ import HostawayAPI from '../../../utils/HostawayAPI';
 export default factories.createCoreController('api::property.property', ({ strapi }) =>  ({
   /**
    * Custom controller action to retrieve the calendar array of a Property from Hostaway API
-   * GET - /properties/:id/calendar?startDate=...&endDate=....
+   * GET - /properties/:id/calendar?startDate=...&endDate=....&onlyBlocked=(1/true)
    */
   async getCalendar(ctx) {
     const { id } = ctx.request.params;
-    const { startDate, endDate } = ctx.request.query;
+    // onlyBlocked {boolean [0 | 1]} -> if true, only returns blocked dates
+    const { startDate, endDate, onlyBlocked } = ctx.request.query;
 
     console.log(`Calendar of Listing: ${id} between: ${startDate} - ${endDate}`);
 
@@ -24,12 +25,20 @@ export default factories.createCoreController('api::property.property', ({ strap
       );
 
     // We just need a summary info of the date and status, so we remove unnecessary info
-    const slimCalendar: { date: string, isAvailable: TBoolean }[] = calendar.map((item: TCalendar) => {
+    type TSlimCalendar = { date: string, isAvailable: TBoolean };
+    let slimCalendar: TSlimCalendar[] = calendar.map((item: TCalendar) => {
       return {
         date: item.date,
         isAvailable: item.isAvailable
       };
     });
+
+    // If onlyBlocked queryParam was set to true (1), filter the array to just contained dates with isAvailable=0
+    if (onlyBlocked && (onlyBlocked === 1 || onlyBlocked === 'true')) {
+      slimCalendar = slimCalendar.filter((item: TSlimCalendar) => {
+        return !item.isAvailable;
+      });
+    }
     return slimCalendar;
   },
 
