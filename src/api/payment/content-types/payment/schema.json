@@ -4,10 +4,11 @@
   "info": {
     "singularName": "payment",
     "pluralName": "payments",
-    "displayName": "Payment"
+    "displayName": "Payment",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -16,9 +17,16 @@
     },
     "booking": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::booking.booking",
-      "inversedBy": "payments"
+      "mappedBy": "payment"
+    },
+    "stripeId": {
+      "type": "text"
+    },
+    "isPayed": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

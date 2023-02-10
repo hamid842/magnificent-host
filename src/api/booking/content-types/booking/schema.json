@@ -8,18 +8,12 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "bookingDate": {
       "type": "datetime"
-    },
-    "customer": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "bookings"
     },
     "arrivalDate": {
       "type": "datetime"
@@ -27,14 +21,14 @@
     "departureDate": {
       "type": "datetime"
     },
-    "totalNight": {
+    "totalNights": {
       "type": "integer"
     },
-    "payments": {
+    "payment": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::payment.payment",
-      "mappedBy": "booking"
+      "inversedBy": "booking"
     },
     "guest": {
       "type": "relation",
@@ -47,6 +41,14 @@
       "relation": "manyToOne",
       "target": "api::property.property",
       "inversedBy": "bookings"
+    },
+    "price": {
+      "type": "json",
+      "required": true
+    },
+    "syncedWithHostaway": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

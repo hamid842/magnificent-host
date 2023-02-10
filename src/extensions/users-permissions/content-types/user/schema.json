@@ -63,12 +63,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "bookings": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::booking.booking",
-      "mappedBy": "customer"
-    },
     "guests": {
       "type": "relation",
       "relation": "oneToMany",
