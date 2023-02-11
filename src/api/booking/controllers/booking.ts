@@ -8,11 +8,14 @@ import { TReservationPriceCalculationResponse } from '../../../utils/APITypes';
 import HostawayAPI from '../../../utils/HostawayAPI';
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
+const stripeEndpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
+
 const formatDate = (date: Date): string => {
   return moment(date).format('dddd, MMMM Do YYYY');
 }
 
 export default factories.createCoreController('api::booking.booking', ({strapi}) => ({
+  //====================================================================================================
   /**
    * Override the 'create' REST handler
    * POST /bookings
@@ -37,6 +40,7 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
     } = ctx.request.body;
     //--------------------------------------------------------------------------------------------------
     try {
+      // TODO: Should we create a reservation on Hostaway (pending) here ?
       const arrivalDate = new Date(arrival);
       arrivalDate.setHours(0, 0, 0, 0);
       const departureDate = new Date(departure);
@@ -175,7 +179,7 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       // Create payment (payed: false) (add stripeId)
       const payment = await strapi.db.query('api::payment.payment').create({
         data: {
-          stripeId: session.id,
+          stripeSessionId: session.id,
           // Create relation
           booking: {
             connect: { id: booking.id }
@@ -191,16 +195,66 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
     //--------------------------------------------------------------------------------------------------
   },
 
-  /**
-   * Called when payment is done.
-   * data {
-   *  bookingId
-   * }
-   * 1- Update payment -> payed: true
-   * 2- Sync with Hostaway
-   *    2B- update booking -> syncedWithHostaway: true
-   */
-  async payed(ctx) {
+  //====================================================================================================
+  //====================================================================================================
 
+  /**
+   * Webhook called automatically by Stripe
+   */
+  async payment(ctx) {
+    try {
+      // Event object is the body of the request sent to this webhook
+      let event = ctx.request.body;
+      //--------------------------------------------------------------------------------------------
+      /**
+       * TODO: Must enable validation here.
+       * Validate Webhook request: (Optional)
+       *    Why? The body already has the event data, but to make sure it's from Stripe, we will validate it with a signature from the header
+       *    For this to work, we need access to the raw body of the request (unparsed).
+       *      LINK: https://forum.strapi.io/t/get-raw-request-body-in-custom-controller/14560/2
+       *      1-in ./config/middlewares.ts:
+       *        a-remove: 'strapi::body',
+       *        b-add: { name: 'strapi::body', config: { includeUnparsed: true } },
+       *      2-Here:
+       *        a-add: const unparsed = require('koa-body/unparsed.js');
+       *        b-add: <the codes below>
+       */
+      // // Get the unparsed body of the request
+      // const unparsedBody = ctx.request.body[unparsed];
+      // // Get the signature sent by Stripe
+      // const signature = ctx.request.headers['stripe-signature'];
+      // Over-write the event object with the validated one
+      // event = stripe.webhooks.constructEvent(unparsedBody, signature, stripeEndpointSecret);
+      //--------------------------------------------------------------------------------------------
+      // Handle the event
+      // NOTE: For each event.type value, the event.data.object would be a different type (session, payment_intent)
+      // LINK: https://stripe.com/docs/api/events/types
+      if (event.type === 'checkout.session.completed') {
+        // Occurs when a Checkout Session has been successfully completed.
+        // NOTE: In this event type: 'data.object' is a 'checkout session'
+        // LINK: https://stripe.com/docs/api/events/object
+        const session = event.data.object;
+        // Find payment, booking from db by sessionId
+        // Update isPayed: true
+        const payment = await strapi.db.query('api::payment.payment').update({
+          where: { stripeSessionId: session.id },
+          data: { isPayed: true },
+          populate: ['booking']
+        });
+        // Sync Booking with Hostaway
+        const { booking } = payment;
+        // Update Booking -> syncedWithHostaway: true
+        return { message: 'Success' };
+      } else {
+        // Other event types
+      }
+      //--------------------------------------------------------------------------------------------
+    } catch (err) {
+      ctx.response.status = 500;
+      const errMsg = `[Stripe Webhook failed] →\n ${err.message}`;
+      console.log(errMsg);
+      return { error: errMsg };
+    }
   }
+  //====================================================================================================
 }));

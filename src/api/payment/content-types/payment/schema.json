@@ -21,7 +21,7 @@
       "target": "api::booking.booking",
       "mappedBy": "payment"
     },
-    "stripeId": {
+    "stripeSessionId": {
       "type": "text"
     },
     "isPayed": {
