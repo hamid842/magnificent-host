@@ -4,7 +4,7 @@
 
 import { factories } from '@strapi/strapi'
 import moment from 'moment';
-import { TReservationPriceCalculationResponse } from '../../../utils/APITypes';
+import { TCalendar, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
 import HostawayAPI from '../../../utils/HostawayAPI';
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
@@ -72,8 +72,6 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         throw new Error(`Arrival date (${arrival}) is in the past`);
       }
       //--------------------------------------------------------------------------------------------------
-      // TODO: Check with Hostaway to see if this property is available (before going for payment)
-      //--------------------------------------------------------------------------------------------------
       // Check if property is correct
       const property = await strapi.db.query('api::property.property').findOne({
         where: {
@@ -85,6 +83,16 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       if (!property) {
         throw new Error(`Property with the ID of ${propertyId} doesn't exist.`);
       }
+      //--------------------------------------------------------------------------------------------------
+      // Check with Hostaway to see if this property is available (before going for payment)
+      const calendar: TCalendar[] = await HostawayAPI.getCalendar(
+        property.id,
+        arrivalDate,
+        departureDate
+      );
+      calendar.forEach((day: TCalendar) => {
+        if (day.isAvailable == 0) throw new Error(`The Listing is not available on "${formatDate(new Date(day.date))}"`);
+      });
       //--------------------------------------------------------------------------------------------------
       // Get pricing details
       const prices: TReservationPriceCalculationResponse = await HostawayAPI.calculateReservationPrice(
