@@ -22,9 +22,6 @@
     "phoneNumber": {
       "type": "string"
     },
-    "additionalInformation": {
-      "type": "text"
-    },
     "user": {
       "type": "relation",
       "relation": "manyToOne",
@@ -36,6 +33,9 @@
       "relation": "oneToMany",
       "target": "api::booking.booking",
       "mappedBy": "guest"
+    },
+    "additionalInformation": {
+      "type": "text"
     }
   }
 }

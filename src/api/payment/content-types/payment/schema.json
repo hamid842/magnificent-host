@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "paymentDate": {
+    "sessionCreatedAt": {
       "type": "datetime"
     },
     "booking": {
@@ -24,9 +24,28 @@
     "stripeSessionId": {
       "type": "text"
     },
-    "isPayed": {
-      "type": "boolean",
-      "default": false
+    "sessionExpiresAt": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "PENDING",
+        "EXPIRED",
+        "SUCCESS"
+      ],
+      "required": true,
+      "default": "PENDING"
+    },
+    "amount": {
+      "type": "biginteger",
+      "required": true
+    },
+    "sessionResolvedAt": {
+      "type": "datetime"
+    },
+    "stripePaymentIntentId": {
+      "type": "text"
     }
   }
 }

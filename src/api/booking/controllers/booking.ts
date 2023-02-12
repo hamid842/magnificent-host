@@ -19,13 +19,22 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
   /**
    * Override the 'create' REST handler
    * POST /bookings
+   * NOTE:
+   *    -guest: null -> get logged in user's information from users table (by userId) and add as guest (if doesn't exist in guests)
+   *    -guest: not-null -> add  new guest to guests table and use userId (logged in user) in guest record
    * data: {
    *    userId
    *    propertyId
    *    arrival
    *    departure
    *    numberOfGuests
-   *    couponCode
+   *    couponName,
+   *    guest: { (OPTIONAL)
+   *      fullName,
+   *      email,
+   *      phoneNumber,
+   *    },
+   *    additionalInformation (OPTIONAL)
    * }
    */
   async create(ctx) {
@@ -36,11 +45,14 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       arrival,
       departure,
       numberOfGuests,
-      couponName
+      couponName,
+      guest,
+      additionalInformation
     } = ctx.request.body;
     //--------------------------------------------------------------------------------------------------
     try {
-      // TODO: Should we create a reservation on Hostaway (pending) here ?
+      // TODO: Should we create a reservation on Hostaway (pending) here ? (Block calendar)
+    //--------------------------------------------------------------------------------------------------
       const arrivalDate = new Date(arrival);
       arrivalDate.setHours(0, 0, 0, 0);
       const departureDate = new Date(departure);
@@ -84,40 +96,42 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       );
 
       //--------------------------------------------------------------------------------------------------
-      // Create or Find guest (by userId)
-
-      // Try to find Guest from the database (based on userId)
-      const guests = await strapi.db.query('api::guest.guest').findMany({
-        where: {
-          user: {
-            id: userId
-          },
-        }
+      // Create guest
+      // NOTE: For every booking we create a new guest
+      // get user info based on userId
+      const user = await strapi.db.query('plugin::users-permissions.user').findOne({
+        where: { id: userId }
       });
+      // If no user was found:
+      if (!user) throw new Error(`No user with userId of ${userId} found`);
 
       // Declare the variable. It will be defined in the if-else blocks below
-      let guest: any;
+      let guestEntry;
 
-      if (guests && guests.length) {
-        // Guest already exists
-        guest = guests[0];
-      } else {
-        // Guest doesn't exist, must create it based on user.
-        // get user info based on userId
-        const user = await strapi.db.query('plugin::users-permissions.user').findOne({
-          where: {
-            id: userId
+      if (guest) {
+        // Guest information was passed with request
+        const { fullName, email, phoneNumber } = guest;
+        // Create new guest in db
+        guestEntry = await strapi.db.query('api::guest.guest').create({
+          data: {
+            fullName: fullName,
+            email: email,
+            phoneNumber: phoneNumber,
+            additionalInformation: additionalInformation,
+            // Create relation with user
+            user: {
+              connect: { id: user.id }
+            }
           }
         });
-        // If no user was found:
-        if (!user) throw new Error(`No user with userId of ${userId} found`);
-        // create a new Guest based on information from User table
-        guest = await strapi.db.query('api::guest.guest').create({
+      } else {
+        // No guest data was passed with the request so we'll use the user's data
+        guestEntry = await strapi.db.query('api::guest.guest').create({
           data: {
-            fullName: user.username, // TODO: Must add fullName to user so that it could be used here instead of username
+            fullName: user.fullName,
             email: user.email,
-            phoneNumber: '01234567890', // TODO: Must add phoneNumber to user so that it could be used here
-            additionalInformation: '', // TODO: What should I put here?
+            phoneNumber: user.phoneNumber,
+            additionalInformation: additionalInformation,
             // Create relation with user
             user: {
               connect: { id: user.id }
@@ -125,7 +139,7 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
           }
         });
       }
-      // Now we have a Guest object (either newly created, or from db)
+      // Now we have a Guest object (either created from data of the request, or from the users table)
       //--------------------------------------------------------------------------------------------------
       // Create booking (connect with guest)
       const booking = await strapi.db.query('api::booking.booking').create({
@@ -140,7 +154,7 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
           },
           // Create relation
           guest: {
-            connect: { id: guest.id }
+            connect: { id: guestEntry.id }
           },
           price: prices
         }
@@ -151,7 +165,8 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         mode: 'payment',
-        customer_email: guest.email,
+        expires_at: moment().add(30, 'minute').unix(), // FOR TESTING: Expire in 30 Minutes
+        customer_email: guestEntry.email,
         success_url: process.env.CLIENT_URL + `/last-minute-deals/${propertyId}?booking=${booking.id}&payed=true`,
         cancel_url: process.env.CLIENT_URL + `/last-minute-deals/${propertyId}?booking=${booking.id}&payed=false`,
         line_items: [
@@ -180,10 +195,14 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       const payment = await strapi.db.query('api::payment.payment').create({
         data: {
           stripeSessionId: session.id,
+          amount: session.amount_total,
+          sessionCreatedAt: new Date(session.created * 1000), // Because the value is in UNIX Timestamp (Seconds)
+          sessionExpiresAt: new Date(session.expires_at * 1000), // Because the value is in UNIX Timestamp (Seconds)
           // Create relation
           booking: {
             connect: { id: booking.id }
-          }
+          },
+          status: 'PENDING'
         }
       });
       //--------------------------------------------------------------------------------------------------
@@ -230,23 +249,52 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       // NOTE: For each event.type value, the event.data.object would be a different type (session, payment_intent)
       // LINK: https://stripe.com/docs/api/events/types
       if (event.type === 'checkout.session.completed') {
+        //------------------------------------------------------------------------------------------
         // Occurs when a Checkout Session has been successfully completed.
         // NOTE: In this event type: 'data.object' is a 'checkout session'
         // LINK: https://stripe.com/docs/api/events/object
         const session = event.data.object;
         // Find payment, booking from db by sessionId
-        // Update isPayed: true
+        // 1-Update status: SUCCESS
         const payment = await strapi.db.query('api::payment.payment').update({
           where: { stripeSessionId: session.id },
-          data: { isPayed: true },
+          data: { status: 'SUCCESS', sessionResolvedAt: new Date(), stripePaymentIntentId: session.payment_intent },
           populate: ['booking']
         });
-        // Sync Booking with Hostaway
+        // 2-Sync Booking with Hostaway
         const { booking } = payment;
-        // Update Booking -> syncedWithHostaway: true
+        // 3-Update Booking -> Add Hostaway id for the reservation to the Booking
+        // 4-Update Booking -> syncedWithHostaway: true
         return { message: 'Success' };
-      } else {
+        //------------------------------------------------------------------------------------------
+      } else if (event.type === 'checkout.session.expired') {
+        //------------------------------------------------------------------------------------------
+        // Occurs when a Checkout Session has been successfully completed.
+        // NOTE: In this event type: 'data.object' is a 'checkout session'
+        // LINK: https://stripe.com/docs/api/events/object
+        const session = event.data.object;
+        // Find payment, booking from db by sessionId
+        // 1-Update status: EXPIRED
+        const payment = await strapi.db.query('api::payment.payment').update({
+          where: { stripeSessionId: session.id },
+          data: { status: 'EXPIRED', sessionResolvedAt: new Date(), stripePaymentIntentId: session.payment_intent },
+          populate: ['booking']
+        });
+        // 2-Update / Remove Booking
+        const { booking } = payment;
+        // 3-Free up the calendar (listing)
+        return { message: 'expired' };
+        //------------------------------------------------------------------------------------------
+      } else if (event.type === 'checkout.session.async_payment_succeeded') {
+        //------------------------------------------------------------------------------------------
         // Other event types
+        // console.log('> async_payment_succeeded')
+        //------------------------------------------------------------------------------------------
+      } else if (event.type === 'checkout.session.async_payment_failed') {
+        //------------------------------------------------------------------------------------------
+        // Other event types
+        // console.log('> async_payment_failed')
+        //------------------------------------------------------------------------------------------
       }
       //--------------------------------------------------------------------------------------------
     } catch (err) {

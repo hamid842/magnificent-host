@@ -49,6 +49,9 @@
     "syncedWithHostaway": {
       "type": "boolean",
       "default": false
+    },
+    "hostawayReservationId": {
+      "type": "text"
     }
   }
 }

@@ -74,6 +74,14 @@
       "relation": "oneToMany",
       "target": "api::host.host",
       "mappedBy": "user"
+    },
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
     }
   }
 }
