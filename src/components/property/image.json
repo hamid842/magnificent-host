@@ -13,11 +13,11 @@
       "type": "string",
       "required": true
     },
-    "sortOrder": {
-      "type": "integer"
-    },
     "url_original": {
       "type": "string"
+    },
+    "sortOrder": {
+      "type": "integer"
     }
   }
 }

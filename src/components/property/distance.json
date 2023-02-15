@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_property_distances",
+  "info": {
+    "displayName": "Distance",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "walking": {
+      "type": "integer",
+      "min": 1
+    },
+    "driving": {
+      "type": "integer",
+      "min": 1
+    },
+    "transit": {
+      "type": "integer",
+      "min": 1
+    }
+  }
+}

@@ -66,6 +66,7 @@ export default class HostawayAPI {
       //------------------------------------------------
     } catch (error) {
       console.log('[Error while getting AccessToken from Hostaway] → \n', error);
+      throw new Error('Error while accessing Hostaway API to Log in.');
     }
   }
 
@@ -166,7 +167,7 @@ export default class HostawayAPI {
       return response.data.result;
     } catch (error) {
       console.log('[Error while retrieving a list of Calendar from Hostaway] → \n', error);
-      return [];
+      throw new Error('Error while getting Listing Calendar Information from Hostaway API.');
     }
   }
 
@@ -306,7 +307,7 @@ export default class HostawayAPI {
         return response.data.result;
       } catch (error) {
         console.log('[Error while creating a Reservation on Hostaway] → \n', error);
-        return null;
+        throw error;
       }
     }
 
@@ -367,7 +368,7 @@ export default class HostawayAPI {
       return response.data.result;
     } catch (error) {
       console.log('[Error while getting Reservation Price Details from Hostaway] → \n', error);
-      return null;
+      throw new Error('Error while getting Listing Price Information from Hostaway API.');
     }
   }
 
@@ -413,11 +414,12 @@ export default class HostawayAPI {
       //------------------------------------------------
     // Handle API Error response
     if (response.data.status === 'fail') throw new Error(response.data.result);
-    // Successful request -> Return the data
+      // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
       console.log('[Error while getting a CouponId from Hostaway] → \n', error);
-      return null;
+      // The message in the error returned by Hostaway says: "Coupon X not found"
+      throw new Error(error.response.data.message);
     }
   }
 

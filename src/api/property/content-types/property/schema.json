@@ -130,6 +130,11 @@
       "relation": "oneToMany",
       "target": "api::review.review",
       "mappedBy": "property"
+    },
+    "distances": {
+      "type": "component",
+      "repeatable": true,
+      "component": "property.distance"
     }
   }
 }
