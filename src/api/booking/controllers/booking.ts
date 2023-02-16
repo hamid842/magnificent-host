@@ -175,8 +175,8 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         mode: 'payment',
         expires_at: moment().add(30, 'minute').unix(), // FOR TESTING: Expire in 30 Minutes
         customer_email: guestEntry.email,
-        success_url: process.env.CLIENT_URL + `/last-minute-deals/${propertyId}?booking=${booking.id}&payed=true`,
-        cancel_url: process.env.CLIENT_URL + `/last-minute-deals/${propertyId}?booking=${booking.id}&payed=false`,
+        success_url: process.env.CLIENT_URL + `/receipt/${booking.id}?success=true`,
+        cancel_url: process.env.CLIENT_URL + `/receipt/${booking.id}?success=false`,
         line_items: [
           {
             price_data: {
