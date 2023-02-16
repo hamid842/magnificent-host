@@ -4,7 +4,7 @@
 
 import { factories } from '@strapi/strapi'
 import moment from 'moment';
-import { TCalendar, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
+import { DATE_FORMAT, TCalendar, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
 import HostawayAPI from '../../../utils/HostawayAPI';
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
@@ -49,6 +49,21 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       guest,
       additionalInformation
     } = ctx.request.body;
+    // Validate inputs
+    if (!userId) return ctx.badRequest(`You must be logged in and provide User Id.`);
+    if (!propertyId) return ctx.badRequest(`You must provide the Property Id that you want to book.`);
+    if (!arrival) return ctx.badRequest(`Arrival Date must be provided`);
+    if (!moment(arrival, DATE_FORMAT, true).isValid()) return ctx.badRequest(`Arrival Date is not a valid date ${DATE_FORMAT}`);
+    if (!departure) return ctx.badRequest(`Arrival Date must be provided`);
+    if (!moment(departure, DATE_FORMAT, true).isValid()) return ctx.badRequest(`Departure Date is not a valid date ${DATE_FORMAT}`);
+    if (!numberOfGuests) return ctx.badRequest(`Number of Guests must be provided`);
+    if (typeof numberOfGuests !== 'number') return ctx.badRequest(`Number of Guests must be a number`);
+    if (guest) {
+      if (!guest.fullName) return ctx.badRequest(`When creating a custom guest data: the Fullname must be provided.`);
+      if (!guest.email) return ctx.badRequest(`When creating a custom guest data: the Email Address must be provided.`);
+      if (!guest.phoneNumber) return ctx.badRequest(`When creating a custom guest data: the Phone Number must be provided.`);
+    }
+
     //--------------------------------------------------------------------------------------------------
     try {
       // TODO: Should we create a reservation on Hostaway (pending) here ? (Block calendar)
@@ -216,8 +231,7 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       //--------------------------------------------------------------------------------------------------
       return { stripeId: session.id, stripeUrl: session.url };
     } catch (error) {
-      ctx.response.status = 500;
-      return { error: String(error) };
+      return ctx.internalServerError(error.message, error);
     }
     //--------------------------------------------------------------------------------------------------
   },
