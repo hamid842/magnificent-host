@@ -52,6 +52,15 @@
     },
     "hostawayReservationId": {
       "type": "text"
+    },
+    "hostawayResponse": {
+      "type": "json"
+    },
+    "numberOfGuests": {
+      "type": "integer"
+    },
+    "couponName": {
+      "type": "string"
     }
   }
 }

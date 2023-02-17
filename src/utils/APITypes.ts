@@ -209,18 +209,19 @@ export type TReservation = {
   //-----------------------------
   // Required Fields
   //-----------------------------
-  id: number, // Unique ID of the reservation on Hostaway
+  id: number | undefined, // Unique ID of the reservation on Hostaway
   listingMapId: number, // Identifier of listing object.
   channelId: number | EChannelId, // Value can be set to one of the following: 2000 for a direct reservation, 2020 for a Partner reservation
   arrivalDate: string, // Date - (YYYY-MM-DD)
   departureDate: string, // Date - (YYYY-MM-DD)
   channelName: string, // Channel name (Airbnb, Booking.com, Expedia, Vrbo etc.)
   reservationId: string, // Reservation ID value which gets from the channel (Airbnb, Booking.com, Expedia, Vrbo etc.)
-  hostawayReservationId: number, // Unique ID of the reservation on Hostaway (the same value as ID)
+  hostawayReservationId: number | undefined, // Unique ID of the reservation on Hostaway (the same value as ID)
   channelReservationId: string, // The same value as reservationId
   //-----------------------------
   // Optional Fields
   //-----------------------------
+  couponName?: string, // 'couponName' string field can be provided inside reservation object, it will cause the corresponding coupon to be applied to the specified reservation,
   source?: string,
   externalPropertyId?: string,
   externalRatePlanId?: string,

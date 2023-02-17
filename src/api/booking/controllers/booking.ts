@@ -4,7 +4,7 @@
 
 import { factories } from '@strapi/strapi'
 import moment from 'moment';
-import { DATE_FORMAT, TCalendar, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
+import { DATE_FORMAT, EChannelId, TCalendar, TReservation, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
 import HostawayAPI from '../../../utils/HostawayAPI';
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
@@ -171,6 +171,8 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
           arrivalDate: arrivalDate,
           departureDate: departureDate,
           totalNights: totalNights,
+          numberOfGuests: numberOfGuests,
+          couponName: couponName || '',
           // Create relation
           property: {
             connect: { id: property.id }
@@ -218,7 +220,7 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       const payment = await strapi.db.query('api::payment.payment').create({
         data: {
           stripeSessionId: session.id,
-          amount: session.amount_total,
+          amount: Math.round(session.amount_total / 100),
           sessionCreatedAt: new Date(session.created * 1000), // Because the value is in UNIX Timestamp (Seconds)
           sessionExpiresAt: new Date(session.expires_at * 1000), // Because the value is in UNIX Timestamp (Seconds)
           // Create relation
@@ -281,12 +283,48 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         const payment = await strapi.db.query('api::payment.payment').update({
           where: { stripeSessionId: session.id },
           data: { status: 'SUCCESS', sessionResolvedAt: new Date(), stripePaymentIntentId: session.payment_intent },
-          populate: ['booking']
+          // populate: ['booking']
+          populate: {
+            booking: {
+              populate: {
+                guest: true,
+                property: true
+              }
+            }
+          }
         });
         // 2-Sync Booking with Hostaway
         const { booking } = payment;
-        // 3-Update Booking -> Add Hostaway id for the reservation to the Booking
-        // 4-Update Booking -> syncedWithHostaway: true
+        const { guest, property } = booking;
+        const reservation: TReservation = {
+          id: undefined,
+          hostawayReservationId: undefined,
+          listingMapId: property.id,
+          channelId: EChannelId.PARTNER_RESERVATION,
+          arrivalDate: moment(booking.arrivalDate).format(DATE_FORMAT),
+          departureDate: moment(booking.departureDate).format(DATE_FORMAT),
+          channelName: 'Magnificent',
+          reservationId: booking.id,
+          channelReservationId: booking.id,
+          numberOfGuests: booking.numberOfGuests,
+          guestName: guest.fullName,
+          guestEmail: guest.email,
+          phone: guest.phoneNumber,
+          guestNote: guest.additionalInformation,
+          isPaid: 1
+        };
+
+        if (booking.couponName) {
+          reservation.couponName = booking.couponName;
+        }
+
+        const result = await HostawayAPI.createReservation(reservation, true);
+        // 3-Update Booking -> Add Hostaway info to the entry
+        const updatedBooking = await strapi.db.query('api::booking.booking').update({
+          where: { id: booking.id },
+          data: { syncedWithHostaway: true, hostawayReservationId: result.id, hostawayResponse: result },
+        });
+        console.log('[Stripe Webhook: completed]');
         return { message: 'Success' };
         //------------------------------------------------------------------------------------------
       } else if (event.type === 'checkout.session.expired') {
@@ -305,17 +343,20 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         // 2-Update / Remove Booking
         const { booking } = payment;
         // 3-Free up the calendar (listing)
+        console.log('[Stripe Webhook: expired]');
         return { message: 'expired' };
         //------------------------------------------------------------------------------------------
       } else if (event.type === 'checkout.session.async_payment_succeeded') {
         //------------------------------------------------------------------------------------------
         // Other event types
         // console.log('> async_payment_succeeded')
+        console.log('[Stripe Webhook: async_payment_succeeded]');
         //------------------------------------------------------------------------------------------
       } else if (event.type === 'checkout.session.async_payment_failed') {
         //------------------------------------------------------------------------------------------
         // Other event types
         // console.log('> async_payment_failed')
+        console.log('[Stripe Webhook: async_payment_failed]');
         //------------------------------------------------------------------------------------------
       }
       //--------------------------------------------------------------------------------------------
