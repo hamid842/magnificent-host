@@ -24,7 +24,8 @@ const seedReviews = async (strapi) => {
       const newEntry = await strapi.entityService.create('api::review.review', {
         data: {
           ...review,
-          userPhoto: `http://localhost:${process.env.PORT}/images/${review.userPhoto}`
+          userPhoto: `http://localhost:${process.env.PORT}/images/${review.userPhoto}`,
+          publishedAt: new Date()
         }
       });
     }
