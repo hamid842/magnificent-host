@@ -1,4 +1,4 @@
-import BlogSeeder from "./utils/BlogSeeder";
+import DBSeeder from "./utils/seeders/DBSeeder";
 
 export default {
   /**
@@ -18,6 +18,6 @@ export default {
    */
   async bootstrap({ strapi }) {
     // TODO: REMOVE IN PRODUCTION
-    await BlogSeeder(strapi);
+    await DBSeeder(strapi);
   },
 };

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "review",
     "pluralName": "reviews",
-    "displayName": "Review"
+    "displayName": "Review",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -31,11 +32,12 @@
       "type": "string"
     },
     "userPhoto": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false
+      "type": "string"
+    },
+    "inHomePage": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }

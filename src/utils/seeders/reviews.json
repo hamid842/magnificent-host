@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "property": 123573,
+    "text": "This unique house was a truly unforgettable experience! The host had thought of every detail to make the stay comfortable and memorable, and the surrounding nature was absolutely stunning. Highly recommend for anyone looking for a one-of-a-kind vacation.",
+    "rating": 4,
+    "userName": "Sarah Johnson",
+    "userPhoto": "user_5.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 2,
+    "property": 123573,
+    "text": "I had an amazing stay at this cozy listing! The location was perfect for exploring the city and the apartment had everything I needed for a comfortable stay. The host was also very responsive and provided great local recommendations. Highly recommend!",
+    "rating": 4,
+    "userName": "Fatima Ahmed",
+    "userPhoto": "user_1.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 3,
+    "property": 123574,
+    "text": "I had a lovely time at this charming home in the heart of the city. The host was very welcoming and provided great recommendations for local restaurants and attractions. The apartment itself was clean, comfortable, and had everything I needed for a great stay",
+    "rating": 5,
+    "userName": "Wei Chen",
+    "userPhoto": "user_9.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 4,
+    "property": 123574,
+    "text": "This luxurious villa was absolutely stunning! The location was secluded and peaceful, and the amenities were top-notch. The host was also very accommodating." ,
+    "rating": 4,
+    "userName": "Benjamin Martinez",
+    "userPhoto": "user_7.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 5,
+    "property": 123574,
+    "text": "I had a wonderful time at this peaceful retreat. The host provided everything I needed for a relaxing getaway and the surrounding nature was absolutely stunning. Highly recommend for anyone looking for a peaceful escape.",
+    "rating": 5,
+    "userName": "Omar Abdullah Al-Hassan",
+    "userPhoto": "user_4.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 6,
+    "property": 125108,
+    "text": "I had a lovely stay at this charming villa. The interior was beautifully decorated and the outdoor space was perfect for enjoying the sunny weather. The host was also very friendly and made me feel right at home",
+    "rating": 4,
+    "userName": "James Wilson",
+    "userPhoto": "user_3.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 7,
+    "property": 125139,
+    "text": "This spacious listing exceeded my expectations! The location was central and convenient, and the apartment had all the necessary amenities for a comfortable stay. The host was also very helpful.",
+    "rating": 5,
+    "userName": "Jennifer Garcia",
+    "userPhoto": "user_10.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 8,
+    "property": 125139,
+    "text": "This beachfront villa was absolutely stunning! The view was breathtaking and the amenities were top-notch. The host was also very accommodating and made sure we had everything we needed for a perfect vacation",
+    "rating": 4,
+    "userName": "Khaled Al-Khouri",
+    "userPhoto": "user_6.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 9,
+    "property": 125307,
+    "text": "We had an amazing stay at this modern and stylish place. The space was even more beautiful in person than in the photos, and the host was very accommodating and easy to communicate with. The location was also great, with lots of trendy shops and restaurants just a short walk away.",
+    "rating": 5,
+    "userName": "Hiroki Nakamura",
+    "userPhoto": "user_9.jpg",
+    "inHomePage": true
+  },
+  {
+    "id": 10,
+    "property": 125852,
+    "text": "We had an incredible stay at this stunning beachfront villa. The views were absolutely breathtaking, and the amenities were top-notch. The host was very responsive and made sure we had everything we needed. We would definitely recommend this listing to anyone looking for a luxurious beach vacation!",
+    "rating": 4,
+    "userName": "David Anderson",
+    "userPhoto": "user_2.jpg",
+    "inHomePage": true
+  }
+]
