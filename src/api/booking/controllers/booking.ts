@@ -317,13 +317,13 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         if (booking.couponName) {
           reservation.couponName = booking.couponName;
         }
-
-        const result = await HostawayAPI.createReservation(reservation, true);
+        // TODO: TEMP: DISABLE HOSTAWAY SYNC
+        // const result = await HostawayAPI.createReservation(reservation, true);
         // 3-Update Booking -> Add Hostaway info to the entry
-        const updatedBooking = await strapi.db.query('api::booking.booking').update({
-          where: { id: booking.id },
-          data: { syncedWithHostaway: true, hostawayReservationId: result.id, hostawayResponse: result },
-        });
+        // const updatedBooking = await strapi.db.query('api::booking.booking').update({
+          // where: { id: booking.id },
+          // data: { syncedWithHostaway: true, hostawayReservationId: result.id, hostawayResponse: result },
+        // });
         console.log('[Stripe Webhook: completed]');
         return { message: 'Success' };
         //------------------------------------------------------------------------------------------
