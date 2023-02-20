@@ -109,6 +109,12 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         if (day.isAvailable == 0) throw new Error(`The Listing is not available on "${formatDate(new Date(day.date))}"`);
       });
       //--------------------------------------------------------------------------------------------------
+      // Check for min nights and max nights (must be more more than min nights)
+      if (property.minNights && property.maxNights) {
+        if (totalNights < property.minNights) throw new Error(`Total nights (${totalNights}) Can't be less than (${property.minNights})`);
+        if (totalNights > property.maxNights) throw new Error(`Total nights (${totalNights}) Can't be more than (${property.maxNights})`);
+      }
+      //--------------------------------------------------------------------------------------------------
       // Get pricing details
       const prices: TReservationPriceCalculationResponse = await HostawayAPI.calculateReservationPrice(
         propertyId,
@@ -117,7 +123,6 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         numberOfGuests,
         couponName
       );
-
       //--------------------------------------------------------------------------------------------------
       // Create guest
       // NOTE: For every booking we create a new guest
