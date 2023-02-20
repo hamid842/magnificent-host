@@ -115,7 +115,6 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         departureDate,
         true
       );
-      console.log(JSON.stringify(blockedDates, null, 2));
       //--------------------------------------------------------------------------------------------------
       // Check for min nights and max nights (must be more more than min nights)
       if (property.minNights && property.maxNights) {
@@ -370,7 +369,6 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
           booking.departureDate,
           false
         );
-        console.log(JSON.stringify(unblockedDates, null, 2));
         console.log('[Stripe Webhook: expired]');
         return { message: 'expired' };
         //------------------------------------------------------------------------------------------
