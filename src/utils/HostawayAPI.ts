@@ -424,6 +424,44 @@ export default class HostawayAPI {
   }
 
   //===========================================================================================================
+  /**
+  * Block/Unblock calendar days
+  *
+  *
+  * Link: https://api.hostaway.com/documentation?javascript#update-the-calendar
+  */
+  public static async updateCalendar(listingId: number, startDate: Date, endDate: Date, block: boolean): Promise<TCalendar[]> {
+    // If there's no accessToken, get a new token
+    if (!HostawayAPI.accessToken ) {
+      await HostawayAPI.init();
+    }
+    //------------------------------------------------
+    try {
+      const response: IAxiosResponse = await axios.put(`${HostawayAPI.BASE}/listings/${listingId}/calendar`,
+      {
+        startDate: moment(startDate).format(DATE_FORMAT),
+        endDate: moment(endDate).format(DATE_FORMAT),
+        isAvailable: (block ? '0' : '1')
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${HostawayAPI.accessToken.access_token}`,
+          'Cache-control': 'no-cache',
+          'Content-Type': 'application/json',
+        }
+      });
+      //------------------------------------------------
+    // Handle API Error response
+    if (response.data.status === 'fail') throw new Error(response.data.result);
+      // Successful request -> Return the data
+      return response.data.result;
+    } catch (error) {
+      console.log('[Error while updating (block/unblock) calendar on Hostaway] → \n', error);
+      throw error;
+    }
+  }
+
+  //===========================================================================================================
 
 }
 

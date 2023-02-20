@@ -66,7 +66,6 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
 
     //--------------------------------------------------------------------------------------------------
     try {
-      // TODO: Should we create a reservation on Hostaway (pending) here ? (Block calendar)
     //--------------------------------------------------------------------------------------------------
       const arrivalDate = new Date(arrival);
       arrivalDate.setHours(0, 0, 0, 0);
@@ -108,6 +107,15 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
       calendar.forEach((day: TCalendar) => {
         if (day.isAvailable == 0) throw new Error(`The Listing is not available on "${formatDate(new Date(day.date))}"`);
       });
+      //--------------------------------------------------------------------------------------------------
+      // Block calendar dates
+      const blockedDates: TCalendar[] = await HostawayAPI.updateCalendar(
+        property.id,
+        arrivalDate,
+        departureDate,
+        true
+      );
+      console.log(JSON.stringify(blockedDates, null, 2));
       //--------------------------------------------------------------------------------------------------
       // Check for min nights and max nights (must be more more than min nights)
       if (property.minNights && property.maxNights) {
@@ -343,11 +351,26 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
         const payment = await strapi.db.query('api::payment.payment').update({
           where: { stripeSessionId: session.id },
           data: { status: 'EXPIRED', sessionResolvedAt: new Date(), stripePaymentIntentId: session.payment_intent },
-          populate: ['booking']
+          populate: {
+            booking: {
+              populate: {
+                guest: true,
+                property: true
+              }
+            }
+          }
         });
         // 2-Update / Remove Booking
         const { booking } = payment;
+        const { guest, property } = booking;
         // 3-Free up the calendar (listing)
+        const unblockedDates: TCalendar[] = await HostawayAPI.updateCalendar(
+          property.id,
+          booking.arrivalDate,
+          booking.departureDate,
+          false
+        );
+        console.log(JSON.stringify(unblockedDates, null, 2));
         console.log('[Stripe Webhook: expired]');
         return { message: 'expired' };
         //------------------------------------------------------------------------------------------
