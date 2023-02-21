@@ -40,12 +40,13 @@ export default factories.createCoreController('api::property.property', ({ strap
     let slimCalendar: TSlimCalendar[] = calendar.map((item: TCalendar) => {
       return {
         date: item.date,
-        isAvailable: item.isAvailable
+        isAvailable: item.isAvailable,
+        minimumStay: item.minimumStay
       };
     });
 
     // If onlyBlocked queryParam was set to true (1), filter the array to just contained dates with isAvailable=0
-    if (onlyBlocked && (onlyBlocked === 1 || onlyBlocked === 'true')) {
+    if (onlyBlocked && (onlyBlocked === '1' || onlyBlocked === 'true')) {
       slimCalendar = slimCalendar.filter((item: TSlimCalendar) => {
         return !item.isAvailable;
       });
