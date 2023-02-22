@@ -325,7 +325,8 @@ export default class HostawayAPI {
       startingDate: Date,
       endingDate: Date,
       numberOfGuests: number,
-      couponName?: string
+      couponName: string | undefined = undefined,
+      applyConstantTax: boolean = true
     ): Promise<TReservationPriceCalculationResponse> {
     // If there's no accessToken, get a new token
     if (!HostawayAPI.accessToken ) {
@@ -365,7 +366,30 @@ export default class HostawayAPI {
     // Handle API Error response
     if (response.data.status === 'fail') throw new Error(response.data.result);
     // Successful request -> Return the data
-      return response.data.result;
+      const price: TReservationPriceCalculationResponse = response.data.result;
+      if (applyConstantTax) {
+        const property = await strapi.db.query('api::property.property').findOne({
+          where: { id: listingId }
+        });
+
+        let constantTax = price.totalPrice * (property.constantTaxRate / 100);
+        constantTax = parseFloat(constantTax.toFixed(2));
+
+        price.totalPrice += constantTax;
+        price.components.push({
+          type: 'tax',
+          name: 'tax',
+          title: 'Tax',
+          value: constantTax,
+          total: constantTax,
+          isIncludedInTotalPrice: 1,
+          alias: '',
+          isOverriddenByUser: 0,
+          isMandatory: 0,
+          isDeleted: 0
+        });
+      }
+      return price;
     } catch (error) {
       console.log('[Error while getting Reservation Price Details from Hostaway] → \n', error);
       throw new Error('Error while getting Listing Price Information from Hostaway API.');

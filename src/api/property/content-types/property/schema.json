@@ -135,6 +135,11 @@
       "type": "component",
       "repeatable": true,
       "component": "property.distance"
+    },
+    "constantTaxRate": {
+      "type": "decimal",
+      "min": 0,
+      "default": 5
     }
   }
 }
