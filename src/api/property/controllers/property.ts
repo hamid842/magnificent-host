@@ -7,6 +7,16 @@ import moment from 'moment';
 import { DATE_FORMAT, TBoolean, TCalendar, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
 import HostawayAPI from '../../../utils/HostawayAPI';
 
+/**
+ * Must match 'id' attribute of the ui fields on the ui side
+ * to determine which field doesn't the error belong to
+ */
+enum EFields {
+  DATE = 'datepicker',
+  GUEST = 'guestscount',
+  COUPON = 'couponname'
+}
+
 export default factories.createCoreController('api::property.property', ({ strapi }) =>  ({
   /**
    * Custom controller action to retrieve the calendar array of a Property from Hostaway API
@@ -64,7 +74,7 @@ export default factories.createCoreController('api::property.property', ({ strap
       const { id } = ctx.request.params;
       const { guestCount, startDate, endDate, couponName } = ctx.request.query;
       // Validate inputs (using 'moment(dateStr, dateFormat, true)' to validate a date and its format)
-      if (!guestCount) return ctx.badRequest(`Guest Count must be provided`);
+      if (!guestCount) return ctx.badRequest(`Guest Count must be provided`, { field: EFields.GUEST });
       if (!startDate) return ctx.badRequest(`Arrival Date must be provided`);
       if (!moment(startDate, DATE_FORMAT, true).isValid()) return ctx.badRequest(`Arrival Date is not a valid date ${DATE_FORMAT}`);
       if (!endDate) return ctx.badRequest(`Departure Date must be provided`);
@@ -82,7 +92,11 @@ export default factories.createCoreController('api::property.property', ({ strap
           couponName
         );
       } catch (error) {
-        return ctx.internalServerError(error.message, error);
+        let details = error;
+        if (error.message.includes('Coupon')) {
+          details = {  ...details, field: EFields.COUPON }
+        }
+        return ctx.internalServerError(error.message, details);
       }
 
       return prices;

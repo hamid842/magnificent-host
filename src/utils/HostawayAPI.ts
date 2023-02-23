@@ -65,8 +65,8 @@ export default class HostawayAPI {
       };
       //------------------------------------------------
     } catch (error) {
-      console.log('[Error while getting AccessToken from Hostaway] → \n', error);
-      throw new Error('Error while accessing Hostaway API to Log in.');
+      console.log('[Error while getting AccessToken from Hostaway] → \n', error.message);
+      throw { message: 'Error while accessing Hostaway API to Log in.' };
     }
   }
 
@@ -93,11 +93,11 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
       // Handle API Error response
-      if (response.data.status === 'fail') throw new Error(response.data.result);
+      if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving a list of Listings from Hostaway] → \n', error);
+      console.log('[Error while retrieving a list of Listings from Hostaway] → \n', error.message);
       return [];
     }
   }
@@ -125,11 +125,11 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
       // Handle API Error response
-      if (response.data.status === 'fail') throw new Error(response.data.result);
+      if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving a Listing from Hostaway] → \n', error);
+      console.log('[Error while retrieving a Listing from Hostaway] → \n', error.message);
       return undefined;
     }
   }
@@ -162,12 +162,12 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
       // Handle API Error response
-      if (response.data.status === 'fail') throw new Error(response.data.result);
+      if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving a list of Calendar from Hostaway] → \n', error);
-      throw new Error('Error while getting Listing Calendar Information from Hostaway API.');
+      console.log('[Error while retrieving a list of Calendar from Hostaway] → \n', error.message);
+      throw { message: 'Error while getting Listing Calendar Information from Hostaway API.' };
     }
   }
 
@@ -198,11 +198,11 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
       // Handle API Error response
-      if (response.data.status === 'fail') throw new Error(response.data.result);
+      if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
+      console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error.message);
       return [];
     }
   }
@@ -230,11 +230,11 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
       // Handle API Error response
-      if (response.data.status === 'fail') throw new Error(response.data.result);
+      if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
+      console.log('[Error while retrieving list of Bed Types from Hostaway] → \n', error.message);
       return [];
     }
   }
@@ -262,11 +262,11 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
       // Handle API Error response
-      if (response.data.status === 'fail') throw new Error(response.data.result);
+      if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while retrieving list of Amenities from Hostaway] → \n', error);
+      console.log('[Error while retrieving list of Property Types from Hostaway] → \n', error.message);
       return [];
     }
   }
@@ -302,11 +302,11 @@ export default class HostawayAPI {
         });
         //------------------------------------------------
       // Handle API Error response
-      if (response.data.status === 'fail') throw new Error(response.data.result);
+      if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
         return response.data.result;
       } catch (error) {
-        console.log('[Error while creating a Reservation on Hostaway] → \n', error);
+        console.log('[Error while creating a Reservation on Hostaway] → \n', error.message);
         throw error;
       }
     }
@@ -333,26 +333,26 @@ export default class HostawayAPI {
       await HostawayAPI.init();
     }
     //------------------------------------------------
-    // If a coupon name is provided, get the couponId from the Hostaway API
-    let couponId = null;
-    if (typeof(couponName) !== 'undefined' && couponName.trim() !== '') {
-      const couponResponse: TCreateReservationCouponResponse = await HostawayAPI.getCouponId(couponName, listingId, startingDate, endingDate);
-      if (couponResponse) couponId = couponResponse.reservationCouponId;
-    }
-    //------------------------------------------------
-    const data: TReservationPriceCalculationRequest = {
-      startingDate: HostawayAPI.getFormattedDate(startingDate),
-      endingDate: HostawayAPI.getFormattedDate(endingDate),
-      numberOfGuests: numberOfGuests,
-      version: 2,
-    };
-
-    // If there's a couponId, add it to the request object
-    if (couponId) {
-      data.reservationCouponId = couponId;
-    }
 
     try {
+      // If a coupon name is provided, get the couponId from the Hostaway API
+      let couponId = null;
+      if (typeof(couponName) !== 'undefined' && couponName.trim() !== '') {
+        const couponResponse: TCreateReservationCouponResponse = await HostawayAPI.getCouponId(couponName, listingId, startingDate, endingDate);
+        if (couponResponse) couponId = couponResponse.reservationCouponId;
+      }
+      //------------------------------------------------
+      const data: TReservationPriceCalculationRequest = {
+        startingDate: HostawayAPI.getFormattedDate(startingDate),
+        endingDate: HostawayAPI.getFormattedDate(endingDate),
+        numberOfGuests: numberOfGuests,
+        version: 2,
+      };
+
+      // If there's a couponId, add it to the request object
+      if (couponId) {
+        data.reservationCouponId = couponId;
+      }
       const response: IAxiosResponse = await axios.post(`${HostawayAPI.BASE}/listings/${listingId}/calendar/priceDetails`,
       JSON.stringify(data),
       {
@@ -364,7 +364,7 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
     // Handle API Error response
-    if (response.data.status === 'fail') throw new Error(response.data.result);
+    if (response.data.status === 'fail') throw { message: response.data.result };
     // Successful request -> Return the data
       const price: TReservationPriceCalculationResponse = response.data.result;
       if (applyConstantTax) {
@@ -391,8 +391,8 @@ export default class HostawayAPI {
       }
       return price;
     } catch (error) {
-      console.log('[Error while getting Reservation Price Details from Hostaway] → \n', error);
-      throw new Error('Error while getting Listing Price Information from Hostaway API.');
+      console.log('[Error while getting Reservation Price Details from Hostaway] → \n', error.message);
+      throw { message: error.message }
     }
   }
 
@@ -437,13 +437,13 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
     // Handle API Error response
-    if (response.data.status === 'fail') throw new Error(response.data.result);
+    if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while getting a CouponId from Hostaway] → \n', error);
+      console.log('[Error while getting a CouponId from Hostaway] → \n', error.message);
       // The message in the error returned by Hostaway says: "Coupon X not found"
-      throw new Error(error.response.data.message);
+      throw { message: error.response.data.message };
     }
   }
 
@@ -476,11 +476,11 @@ export default class HostawayAPI {
       });
       //------------------------------------------------
     // Handle API Error response
-    if (response.data.status === 'fail') throw new Error(response.data.result);
+    if (response.data.status === 'fail') throw { message: response.data.result };
       // Successful request -> Return the data
       return response.data.result;
     } catch (error) {
-      console.log('[Error while updating (block/unblock) calendar on Hostaway] → \n', error);
+      console.log('[Error while updating (block/unblock) calendar on Hostaway] → \n', error.message);
       throw error;
     }
   }
