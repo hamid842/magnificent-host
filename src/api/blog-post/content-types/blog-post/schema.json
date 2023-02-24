@@ -37,6 +37,11 @@
       "relation": "manyToMany",
       "target": "api::blog-category.blog-category",
       "inversedBy": "blog_posts"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }
