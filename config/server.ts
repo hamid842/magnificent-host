@@ -1,4 +1,5 @@
 import updateListingsJob from "../src/jobs/update_listings";
+import generateSitemap from "../src/jobs/generate_sitemap";
 
 export default ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
@@ -8,6 +9,6 @@ export default ({ env }) => ({
   },
   cron: {
     enabled: true,
-    tasks: {...updateListingsJob},
+    tasks: {...updateListingsJob, ...generateSitemap},
   },
 });
