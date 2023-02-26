@@ -40,10 +40,25 @@ const seedReviews = async (strapi) => {
 
 const seedAmenityIcons = async (strapi) => {
   const amenities = require('./amenities.json');
+  // Update amenities that match the name but don't have category or icon
   for (const amenity of amenities) {
     const entity = await strapi.db.query('api::amenity.amenity').update({
-      where: { name: amenity.name },
-      data: { category: amenity.category, icon: amenity.icon },
+      where: {
+        // if (name === name && (!category || !icon))
+        name: amenity.name,
+        $or: [
+          {
+            category: { $null: true }
+          },
+          {
+            icon: { $null: true }
+          }
+        ]
+      },
+      data: {
+        category: amenity.category,
+        icon: amenity.icon
+      },
     });
   }
 };
