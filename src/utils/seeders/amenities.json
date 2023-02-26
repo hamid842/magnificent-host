@@ -1,0 +1,2108 @@
+[
+  {
+    "id": 1,
+    "name": "Cable TV",
+    "category": "Facilities",
+    "icon": "tv"
+  },
+  {
+    "id": 2,
+    "name": "Internet",
+    "category": "Facilities",
+    "icon": "language"
+  },
+  {
+    "id": 3,
+    "name": "Wireless",
+    "category": "Facilities",
+    "icon": "wifi"
+  },
+  {
+    "id": 4,
+    "name": "Air conditioning",
+    "category": "Facilities",
+    "icon": "mode_fan"
+  },
+  {
+    "id": 5,
+    "name": "Wheelchair access possible",
+    "category": "Others",
+    "icon": "accessible"
+  },
+  {
+    "id": 6,
+    "name": "Swimming pool",
+    "category": "Facilities",
+    "icon": "pool"
+  },
+  {
+    "id": 7,
+    "name": "Kitchen",
+    "category": "Kitchen",
+    "icon": "cooking"
+  },
+  {
+    "id": 9,
+    "name": "Gym",
+    "category": "Facilities",
+    "icon": "fitness_center"
+  },
+  {
+    "id": 10,
+    "name": "Breakfast",
+    "category": "Others",
+    "icon": "restaurant"
+  },
+  {
+    "id": 11,
+    "name": "Hot tub",
+    "category": "Facilities",
+    "icon": "hot_tub"
+  },
+  {
+    "id": 12,
+    "name": "Fireplace",
+    "category": "Others",
+    "icon": "fireplace"
+  },
+  {
+    "id": 13,
+    "name": "Washing Machine",
+    "category": "Facilities",
+    "icon": "local_laundry_service"
+  },
+  {
+    "id": 14,
+    "name": "Dryer",
+    "category": "Facilities",
+    "icon": "local_laundry_service"
+  },
+  {
+    "id": 15,
+    "name": "Elevator",
+    "category": "Facilities",
+    "icon": "elevator"
+  },
+  {
+    "id": 16,
+    "name": "24-hour checkin",
+    "category": "Others",
+    "icon": "history"
+  },
+  {
+    "id": 17,
+    "name": "Hair Dryer",
+    "category": "Facilities",
+    "icon": "self_care"
+  },
+  {
+    "id": 18,
+    "name": "Heating",
+    "category": "Facilities",
+    "icon": "hvac"
+  },
+  {
+    "id": 19,
+    "name": "Doorman",
+    "category": "Others",
+    "icon": "person_4"
+  },
+  {
+    "id": 25,
+    "name": "Smoke detector",
+    "category": "Facilities",
+    "icon": "detector_smoke"
+  },
+  {
+    "id": 26,
+    "name": "Carbon Monoxide Detector",
+    "category": "Facilities",
+    "icon": "detector_co"
+  },
+  {
+    "id": 27,
+    "name": "First aid kit",
+    "category": "Facilities",
+    "icon": "medical_services"
+  },
+  {
+    "id": 28,
+    "name": "Fire Extinguisher",
+    "category": "Facilities",
+    "icon": "fire_extinguisher"
+  },
+  {
+    "id": 29,
+    "name": "Essentials",
+    "category": "Others",
+    "icon": "stars"
+  },
+  {
+    "id": 30,
+    "name": "Shampoo",
+    "category": "Bathroom",
+    "icon": "humidity_high"
+  },
+  {
+    "id": 31,
+    "name": "Hangers",
+    "category": "Others",
+    "icon": "styler"
+  },
+  {
+    "id": 32,
+    "name": "Iron",
+    "category": "Others",
+    "icon": "iron"
+  },
+  {
+    "id": 33,
+    "name": "Laptop Friendly workspace",
+    "category": "Others",
+    "icon": "sync_saved_locally"
+  },
+  {
+    "id": 34,
+    "name": "TV",
+    "category": "Facilities",
+    "icon": "tv"
+  },
+  {
+    "id": 35,
+    "name": "Sound system",
+    "category": "Facilities",
+    "icon": "volume_up"
+  },
+  {
+    "id": 36,
+    "name": "Smoking allowed",
+    "category": "Others",
+    "icon": "smoking_rooms"
+  },
+  {
+    "id": 37,
+    "name": "Pets allowed",
+    "category": "Others",
+    "icon": "pets"
+  },
+  {
+    "id": 38,
+    "name": "Street parking",
+    "category": "Facilities",
+    "icon": "add_road"
+  },
+  {
+    "id": 39,
+    "name": "Free parking",
+    "category": "Facilities",
+    "icon": "local_parking"
+  },
+  {
+    "id": 41,
+    "name": "Suitable for events",
+    "category": "Others",
+    "icon": "event_available"
+  },
+  {
+    "id": 42,
+    "name": "Gay friendly",
+    "category": "Others",
+    "icon": "group_add"
+  },
+  {
+    "id": 45,
+    "name": "Balcony",
+    "category": "Facilities",
+    "icon": "balcony"
+  },
+  {
+    "id": 46,
+    "name": "Electronic key card access",
+    "category": "Others",
+    "icon": "credit_card"
+  },
+  {
+    "id": 47,
+    "name": "Private living room",
+    "category": "Facilities",
+    "icon": "living"
+  },
+  {
+    "id": 48,
+    "name": "Suitable for children",
+    "category": "Others",
+    "icon": "child_care"
+  },
+  {
+    "id": 49,
+    "name": "Suitable for infants",
+    "category": "Others",
+    "icon": "crib"
+  },
+  {
+    "id": 50,
+    "name": "Communal swimming pool",
+    "category": "Facilities",
+    "icon": "waves"
+  },
+  {
+    "id": 51,
+    "name": "Heated swimming pool",
+    "category": "Facilities",
+    "icon": "bath_outdoor"
+  },
+  {
+    "id": 52,
+    "name": "Paid parking",
+    "category": "Facilities",
+    "icon": "no_crash"
+  },
+  {
+    "id": 53,
+    "name": "Iron board",
+    "category": "Bedroom",
+    "icon": "iron"
+  },
+  {
+    "id": 54,
+    "name": "Linens",
+    "category": "Bedroom",
+    "icon": "single_bed"
+  },
+  {
+    "id": 55,
+    "name": "Outdoor grill",
+    "category": "Kitchen",
+    "icon": "outdoor_grill"
+  },
+  {
+    "id": 56,
+    "name": "Toaster",
+    "category": "Kitchen",
+    "icon": "breakfast_dining"
+  },
+  {
+    "id": 57,
+    "name": "Dishwasher",
+    "category": "Kitchen",
+    "icon": "dishwasher_gen"
+  },
+  {
+    "id": 58,
+    "name": "Microwave",
+    "category": "Kitchen",
+    "icon": "microwave_gen"
+  },
+  {
+    "id": 59,
+    "name": "Oven",
+    "category": "Kitchen",
+    "icon": "oven_gen"
+  },
+  {
+    "id": 60,
+    "name": "Electric kettle",
+    "category": "Kitchen",
+    "icon": "kettle"
+  },
+  {
+    "id": 61,
+    "name": "Coffee/tea maker",
+    "category": "Kitchen",
+    "icon": "coffee_maker"
+  },
+  {
+    "id": 62,
+    "name": "Shower",
+    "category": "Bathroom",
+    "icon": "shower"
+  },
+  {
+    "id": 63,
+    "name": "Tub",
+    "category": "Bathroom",
+    "icon": "bathtub"
+  },
+  {
+    "id": 64,
+    "name": "Bidet",
+    "category": "Bathroom",
+    "icon": "sprinkler"
+  },
+  {
+    "id": 65,
+    "name": "Wheelchair not accessible",
+    "category": "Others",
+    "icon": "not_accessible"
+  },
+  {
+    "id": 66,
+    "name": "Baby crib",
+    "category": "Bedroom",
+    "icon": "crib"
+  },
+  {
+    "id": 67,
+    "name": "Deck patio uncovered",
+    "category": "Facilities",
+    "icon": "deck"
+  },
+  {
+    "id": 68,
+    "name": "Stove",
+    "category": "Kitchen",
+    "icon": "cooking"
+  },
+  {
+    "id": 69,
+    "name": "Refrigerator",
+    "category": "Kitchen",
+    "icon": "kitchen"
+  },
+  {
+    "id": 70,
+    "name": "Towels",
+    "category": "Bathroom",
+    "icon": "dry_cleaning"
+  },
+  {
+    "id": 71,
+    "name": "Dining room",
+    "category": "Facilities",
+    "icon": "dining"
+  },
+  {
+    "id": 72,
+    "name": "Garden or backyard",
+    "category": "Facilities",
+    "icon": "outdoor_garden"
+  },
+  {
+    "id": 73,
+    "name": "High chair",
+    "category": "Others",
+    "icon": "chair_alt"
+  },
+  {
+    "id": 74,
+    "name": "Kitchen utensils",
+    "category": "Kitchen",
+    "icon": "flatware"
+  },
+  {
+    "id": 75,
+    "name": "Single level home",
+    "category": "Others",
+    "icon": "home"
+  },
+  {
+    "id": 76,
+    "name": "Home step free access",
+    "category": "Others",
+    "icon": "transfer_within_a_station"
+  },
+  {
+    "id": 77,
+    "name": "Path to entrance lit at night",
+    "category": "Others",
+    "icon": "tips_and_updates"
+  },
+  {
+    "id": 78,
+    "name": "Home wide doorway",
+    "category": "Others",
+    "icon": "door_sliding"
+  },
+  {
+    "id": 79,
+    "name": "Flat smooth pathway to front door",
+    "category": "Others",
+    "icon": "trending_flat"
+  },
+  {
+    "id": 80,
+    "name": "Disabled parking spot",
+    "category": "Facilities",
+    "icon": "accessible"
+  },
+  {
+    "id": 81,
+    "name": "Bedroom step free access",
+    "category": "Others",
+    "icon": "trending_flat"
+  },
+  {
+    "id": 82,
+    "name": "Wide clearance to bed",
+    "category": "Bedroom",
+    "icon": "bedroom_parent"
+  },
+  {
+    "id": 83,
+    "name": "Bedroom wide doorway",
+    "category": "Bedroom",
+    "icon": "door_sliding"
+  },
+  {
+    "id": 84,
+    "name": "Accessible height bed",
+    "category": "Bedroom",
+    "icon": "bedroom_child"
+  },
+  {
+    "id": 85,
+    "name": "Electric profiling bed",
+    "category": "Bedroom",
+    "icon": "bedroom_child"
+  },
+  {
+    "id": 86,
+    "name": "Bathroom step free access",
+    "category": "Bathroom",
+    "icon": "trending_flat"
+  },
+  {
+    "id": 87,
+    "name": "Grab rails in shower",
+    "category": "Bathroom",
+    "icon": "drag_handle"
+  },
+  {
+    "id": 88,
+    "name": "Grab rails in toilet",
+    "category": "Bathroom",
+    "icon": "drag_handle"
+  },
+  {
+    "id": 89,
+    "name": "Accessible height toilet",
+    "category": "Bathroom",
+    "icon": "sauna"
+  },
+  {
+    "id": 90,
+    "name": "Rollin shower",
+    "category": "Bathroom",
+    "icon": "shower"
+  },
+  {
+    "id": 91,
+    "name": "Shower chair",
+    "category": "Bathroom",
+    "icon": "bathtub"
+  },
+  {
+    "id": 92,
+    "name": "Bathroom wide doorway",
+    "category": "Bathroom",
+    "icon": "door_sliding"
+  },
+  {
+    "id": 93,
+    "name": "Tub with shower bench",
+    "category": "Bathroom",
+    "icon": "bathtub"
+  },
+  {
+    "id": 94,
+    "name": "Wide clearance to shower and toilet",
+    "category": "Bathroom",
+    "icon": "door_sliding"
+  },
+  {
+    "id": 95,
+    "name": "Handheld shower head",
+    "category": "Bathroom",
+    "icon": "shower"
+  },
+  {
+    "id": 96,
+    "name": "Common space step free access",
+    "category": "Others",
+    "icon": "trending_flat"
+  },
+  {
+    "id": 97,
+    "name": "Common space wide doorway",
+    "category": "Others",
+    "icon": "door_sliding"
+  },
+  {
+    "id": 98,
+    "name": "Mobile hoist",
+    "category": "Others",
+    "icon": "precision_manufacturing"
+  },
+  {
+    "id": 99,
+    "name": "Pool hoist",
+    "category": "Others",
+    "icon": "precision_manufacturing"
+  },
+  {
+    "id": 100,
+    "name": "Ceiling hoist",
+    "category": "Others",
+    "icon": "precision_manufacturing"
+  },
+  {
+    "id": 101,
+    "name": "Hot water",
+    "category": "Bathroom",
+    "icon": "water_voc"
+  },
+  {
+    "id": 102,
+    "name": "Private entrance",
+    "category": "Others",
+    "icon": "meeting_room"
+  },
+  {
+    "id": 104,
+    "name": "Extra pillows and blankets",
+    "category": "Bedroom",
+    "icon": "king_bed"
+  },
+  {
+    "id": 105,
+    "name": "Pocket wifi",
+    "category": "Others",
+    "icon": "nest_remote_comfort_sensor"
+  },
+  {
+    "id": 106,
+    "name": "Cooking basics",
+    "category": "Kitchen",
+    "icon": "cooking"
+  },
+  {
+    "id": 107,
+    "name": "Electric vehicle charger",
+    "category": "Others",
+    "icon": "electric_car"
+  },
+  {
+    "id": 108,
+    "name": "Beach essentials",
+    "category": "Others",
+    "icon": "beach_access"
+  },
+  {
+    "id": 109,
+    "name": "Room darkening shades",
+    "category": "Bedroom",
+    "icon": "roller_shades_closed"
+  },
+  {
+    "id": 110,
+    "name": "Game room",
+    "category": "Facilities",
+    "icon": "stadia_controller"
+  },
+  {
+    "id": 111,
+    "name": "Garage",
+    "category": "Facilities",
+    "icon": "garage"
+  },
+  {
+    "id": 112,
+    "name": "Telephone",
+    "category": "Others",
+    "icon": "call"
+  },
+  {
+    "id": 113,
+    "name": "Wood stove",
+    "category": "Kitchen",
+    "icon": "fireplace"
+  },
+  {
+    "id": 114,
+    "name": "Fitness center",
+    "category": "Facilities",
+    "icon": "exercise"
+  },
+  {
+    "id": 115,
+    "name": "Laundromat",
+    "category": "Facilities",
+    "icon": "laundry"
+  },
+  {
+    "id": 116,
+    "name": "Sauna",
+    "category": "Facilities",
+    "icon": "sauna"
+  },
+  {
+    "id": 117,
+    "name": "Bay",
+    "category": "Facilities",
+    "icon": "waves"
+  },
+  {
+    "id": 118,
+    "name": "Coin laundry",
+    "category": "Facilities",
+    "icon": "generating_tokens"
+  },
+  {
+    "id": 119,
+    "name": "Duty free",
+    "category": "Others",
+    "icon": "money_off"
+  },
+  {
+    "id": 120,
+    "name": "Health beauty spa",
+    "category": "Facilities",
+    "icon": "spa"
+  },
+  {
+    "id": 121,
+    "name": "Marina",
+    "category": "Facilities",
+    "icon": "sailing"
+  },
+  {
+    "id": 122,
+    "name": "Museums",
+    "category": "Facilities",
+    "icon": "museum"
+  },
+  {
+    "id": 123,
+    "name": "Theme parks",
+    "category": "Facilities",
+    "icon": "festival"
+  },
+  {
+    "id": 124,
+    "name": "Water parks",
+    "category": "Facilities",
+    "icon": "pool"
+  },
+  {
+    "id": 125,
+    "name": "Winery tours",
+    "category": "Facilities",
+    "icon": "liquor"
+  },
+  {
+    "id": 126,
+    "name": "Zoo",
+    "category": "Facilities",
+    "icon": "pets"
+  },
+  {
+    "id": 127,
+    "name": "Shower with bathtub",
+    "category": "Bathroom",
+    "icon": "bathtub"
+  },
+  {
+    "id": 128,
+    "name": "Jacuzzi",
+    "category": "Bathroom",
+    "icon": "hot_tub"
+  },
+  {
+    "id": 129,
+    "name": "Toilet",
+    "category": "Bathroom",
+    "icon": "sauna"
+  },
+  {
+    "id": 130,
+    "name": "Car necessary",
+    "category": "Others",
+    "icon": "car_crash"
+  },
+  {
+    "id": 131,
+    "name": "Car not necessary",
+    "category": "Others",
+    "icon": "no_crash"
+  },
+  {
+    "id": 132,
+    "name": "Car recommended",
+    "category": "Others",
+    "icon": "directions_car"
+  },
+  {
+    "id": 133,
+    "name": "Baby bath",
+    "category": "Bathroom",
+    "icon": "baby_changing_station"
+  },
+  {
+    "id": 134,
+    "name": "Baby monitor",
+    "category": "Bedroom",
+    "icon": "child_care"
+  },
+  {
+    "id": 135,
+    "name": "Babysitter recommendations",
+    "category": "Others",
+    "icon": "breastfeeding"
+  },
+  {
+    "id": 136,
+    "name": "Changing table",
+    "category": "Bathroom",
+    "icon": "baby_changing_station"
+  },
+  {
+    "id": 137,
+    "name": "Childrens dinnerware",
+    "category": "Kitchen",
+    "icon": "restaurant"
+  },
+  {
+    "id": 138,
+    "name": "Pack n play travel crib",
+    "category": "Others",
+    "icon": "crib"
+  },
+  {
+    "id": 139,
+    "name": "Toys",
+    "category": "Others",
+    "icon": "toys"
+  },
+  {
+    "id": 140,
+    "name": "Books",
+    "category": "Others",
+    "icon": "import_contacts"
+  },
+  {
+    "id": 141,
+    "name": "Dvd",
+    "category": "Others",
+    "icon": "playlist_add_check_circle"
+  },
+  {
+    "id": 142,
+    "name": "Foosball",
+    "category": "Others",
+    "icon": "sports_soccer"
+  },
+  {
+    "id": 143,
+    "name": "Games",
+    "category": "Others",
+    "icon": "stadia_controller"
+  },
+  {
+    "id": 144,
+    "name": "Music library",
+    "category": "Others",
+    "icon": "queue_music"
+  },
+  {
+    "id": 145,
+    "name": "Ping pong table",
+    "category": "Others",
+    "icon": "sports_tennis"
+  },
+  {
+    "id": 146,
+    "name": "Pool table",
+    "category": "Others",
+    "icon": "atr"
+  },
+  {
+    "id": 147,
+    "name": "Video games",
+    "category": "Others",
+    "icon": "videogame_asset"
+  },
+  {
+    "id": 148,
+    "name": "Video library",
+    "category": "Others",
+    "icon": "play_circle"
+  },
+  {
+    "id": 149,
+    "name": "Dining area",
+    "category": "Facilities",
+    "icon": "dining"
+  },
+  {
+    "id": 150,
+    "name": "Ice maker",
+    "category": "Kitchen",
+    "icon": "ac_unit"
+  },
+  {
+    "id": 153,
+    "name": "Spices",
+    "category": "Kitchen",
+    "icon": "psychiatry"
+  },
+  {
+    "id": 155,
+    "name": "Antiquing",
+    "category": "Others",
+    "icon": "matter"
+  },
+  {
+    "id": 156,
+    "name": "Bird watching",
+    "category": "Facilities",
+    "icon": "visibility"
+  },
+  {
+    "id": 157,
+    "name": "Boating",
+    "category": "Facilities",
+    "icon": "sailing"
+  },
+  {
+    "id": 158,
+    "name": "Eco tourism",
+    "category": "Others",
+    "icon": "nature"
+  },
+  {
+    "id": 159,
+    "name": "Gambling",
+    "category": "Facilities",
+    "icon": "casino"
+  },
+  {
+    "id": 160,
+    "name": "Horseback riding",
+    "category": "Facilities",
+    "icon": "forest"
+  },
+  {
+    "id": 161,
+    "name": "Outlet shopping",
+    "category": "Facilities",
+    "icon": "shopping_bag"
+  },
+  {
+    "id": 162,
+    "name": "Paddle boating",
+    "category": "Facilities",
+    "icon": "kayaking"
+  },
+  {
+    "id": 163,
+    "name": "Shopping",
+    "category": "Facilities",
+    "icon": "shopping_bag"
+  },
+  {
+    "id": 164,
+    "name": "Sledding",
+    "category": "Facilities",
+    "icon": "sledding"
+  },
+  {
+    "id": 165,
+    "name": "Water sports",
+    "category": "Facilities",
+    "icon": "pool"
+  },
+  {
+    "id": 166,
+    "name": "Whale watching",
+    "category": "Facilities",
+    "icon": "water"
+  },
+  {
+    "id": 167,
+    "name": "Wildlife viewing",
+    "category": "Facilities",
+    "icon": "nature_people"
+  },
+  {
+    "id": 168,
+    "name": "Beach",
+    "category": "Facilities",
+    "icon": "beach_access"
+  },
+  {
+    "id": 169,
+    "name": "Beach front",
+    "category": "Others",
+    "icon": "water_lux"
+  },
+  {
+    "id": 170,
+    "name": "Beach view",
+    "category": "Others",
+    "icon": "water_lux"
+  },
+  {
+    "id": 171,
+    "name": "Downtown",
+    "category": "Others",
+    "icon": "location_city"
+  },
+  {
+    "id": 172,
+    "name": "Golf course front",
+    "category": "Facilities",
+    "icon": "golf_course"
+  },
+  {
+    "id": 173,
+    "name": "Golf course view",
+    "category": "Others",
+    "icon": "golf_course"
+  },
+  {
+    "id": 174,
+    "name": "Lake",
+    "category": "Facilities",
+    "icon": "waves"
+  },
+  {
+    "id": 175,
+    "name": "Lake front",
+    "category": "Others",
+    "icon": "waves"
+  },
+  {
+    "id": 176,
+    "name": "Lake view",
+    "category": "Others",
+    "icon": "waves"
+  },
+  {
+    "id": 177,
+    "name": "Mountain",
+    "category": "Facilities",
+    "icon": "landscape"
+  },
+  {
+    "id": 178,
+    "name": "Mountain view",
+    "category": "Others",
+    "icon": "landscape"
+  },
+  {
+    "id": 179,
+    "name": "Near ocean",
+    "category": "Others",
+    "icon": "waves"
+  },
+  {
+    "id": 180,
+    "name": "Ocean front",
+    "category": "Others",
+    "icon": "waves"
+  },
+  {
+    "id": 181,
+    "name": "Ocean view",
+    "category": "Others",
+    "icon": "waves"
+  },
+  {
+    "id": 182,
+    "name": "Resort",
+    "category": "Others",
+    "icon": "apartment"
+  },
+  {
+    "id": 183,
+    "name": "River",
+    "category": "Others",
+    "icon": "water"
+  },
+  {
+    "id": 184,
+    "name": "Rural",
+    "category": "Others",
+    "icon": "cottage"
+  },
+  {
+    "id": 185,
+    "name": "Ski in",
+    "category": "Others",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 186,
+    "name": "Ski in out",
+    "category": "Others",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 187,
+    "name": "Ski out",
+    "category": "Others",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 188,
+    "name": "Town",
+    "category": "Others",
+    "icon": "location_city"
+  },
+  {
+    "id": 189,
+    "name": "Village",
+    "category": "Others",
+    "icon": "cottage"
+  },
+  {
+    "id": 190,
+    "name": "Water view",
+    "category": "Others",
+    "icon": "water"
+  },
+  {
+    "id": 191,
+    "name": "Waterfront",
+    "category": "Others",
+    "icon": "water"
+  },
+  {
+    "id": 192,
+    "name": "Bicycle",
+    "category": "Facilities",
+    "icon": "directions_bike"
+  },
+  {
+    "id": 193,
+    "name": "Boat",
+    "category": "Facilities",
+    "icon": "sailing"
+  },
+  {
+    "id": 194,
+    "name": "Golf",
+    "category": "Facilities",
+    "icon": "golf_course"
+  },
+  {
+    "id": 195,
+    "name": "Kayak canoe",
+    "category": "Facilities",
+    "icon": "kayaking"
+  },
+  {
+    "id": 196,
+    "name": "Snow sports gear",
+    "category": "Facilities",
+    "icon": "snowshoeing"
+  },
+  {
+    "id": 197,
+    "name": "Tennis",
+    "category": "Facilities",
+    "icon": "sports_tennis"
+  },
+  {
+    "id": 198,
+    "name": "Veranda",
+    "category": "Facilities",
+    "icon": "foundation"
+  },
+  {
+    "id": 199,
+    "name": "Water sports gear",
+    "category": "Facilities",
+    "icon": "kitesurfing"
+  },
+  {
+    "id": 200,
+    "name": "Paid parking on premises",
+    "category": "Facilities",
+    "icon": "local_parking"
+  },
+  {
+    "id": 201,
+    "name": "Luggage dropoff allowed",
+    "category": "Others",
+    "icon": "luggage"
+  },
+  {
+    "id": 202,
+    "name": "Long term stays allowed",
+    "category": "Others",
+    "icon": "hourglass_bottom"
+  },
+  {
+    "id": 203,
+    "name": "Cleaning before checkout",
+    "category": "Others",
+    "icon": "mop"
+  },
+  {
+    "id": 204,
+    "name": "Private pool",
+    "category": "Facilities",
+    "icon": "pool"
+  },
+  {
+    "id": 205,
+    "name": "Indoor pool",
+    "category": "Facilities",
+    "icon": "pool"
+  },
+  {
+    "id": 206,
+    "name": "Fireplace guards",
+    "category": "Others",
+    "icon": "fireplace"
+  },
+  {
+    "id": 207,
+    "name": "Outlet covers",
+    "category": "Others",
+    "icon": "electrical_services"
+  },
+  {
+    "id": 208,
+    "name": "Stair gates",
+    "category": "Others",
+    "icon": "stairs"
+  },
+  {
+    "id": 209,
+    "name": "Table corner guards",
+    "category": "Others",
+    "icon": "table_restaurant"
+  },
+  {
+    "id": 210,
+    "name": "Window guards",
+    "category": "Others",
+    "icon": "grid_view"
+  },
+  {
+    "id": 211,
+    "name": "Deadbolt lock",
+    "category": "Others",
+    "icon": "lock"
+  },
+  {
+    "id": 212,
+    "name": "Emergency exit",
+    "category": "Others",
+    "icon": "tab_close_right"
+  },
+  {
+    "id": 213,
+    "name": "Fire emergency contact",
+    "category": "Others",
+    "icon": "fire_truck"
+  },
+  {
+    "id": 214,
+    "name": "Hospital nearby",
+    "category": "Others",
+    "icon": "local_hospital"
+  },
+  {
+    "id": 215,
+    "name": "Medical emergency contact",
+    "category": "Others",
+    "icon": "local_hospital"
+  },
+  {
+    "id": 216,
+    "name": "Outdoor lighting",
+    "category": "Others",
+    "icon": "light"
+  },
+  {
+    "id": 217,
+    "name": "Police emergency contact",
+    "category": "Others",
+    "icon": "local_police"
+  },
+  {
+    "id": 218,
+    "name": "Breakfast possible",
+    "category": "Kitchen",
+    "icon": "restaurant"
+  },
+  {
+    "id": 219,
+    "name": "Cleaning included",
+    "category": "Others",
+    "icon": "cleaning_services"
+  },
+  {
+    "id": 220,
+    "name": "Cleaning optional",
+    "category": "Others",
+    "icon": "cleaning_services"
+  },
+  {
+    "id": 221,
+    "name": "Car available",
+    "category": "Others",
+    "icon": "no_crash"
+  },
+  {
+    "id": 222,
+    "name": "Chauffeur",
+    "category": "Others",
+    "icon": "local_taxi"
+  },
+  {
+    "id": 223,
+    "name": "Massage",
+    "category": "Others",
+    "icon": "spa"
+  },
+  {
+    "id": 224,
+    "name": "Private chef",
+    "category": "Others",
+    "icon": "cooking"
+  },
+  {
+    "id": 225,
+    "name": "Basketball court",
+    "category": "Facilities",
+    "icon": "sports_basketball"
+  },
+  {
+    "id": 226,
+    "name": "Cross country skiing",
+    "category": "Facilities",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 227,
+    "name": "Cycling",
+    "category": "Facilities",
+    "icon": "directions_bike"
+  },
+  {
+    "id": 228,
+    "name": "Deepsea fishing",
+    "category": "Facilities",
+    "icon": "phishing"
+  },
+  {
+    "id": 229,
+    "name": "Fishing",
+    "category": "Facilities",
+    "icon": "phishing"
+  },
+  {
+    "id": 230,
+    "name": "Fishing bay",
+    "category": "Facilities",
+    "icon": "phishing"
+  },
+  {
+    "id": 231,
+    "name": "Fishing fly",
+    "category": "Facilities",
+    "icon": "phishing"
+  },
+  {
+    "id": 232,
+    "name": "Fishing freshwater",
+    "category": "Facilities",
+    "icon": "phishing"
+  },
+  {
+    "id": 233,
+    "name": "Fishing surf",
+    "category": "Facilities",
+    "icon": "phishing"
+  },
+  {
+    "id": 234,
+    "name": "Golf",
+    "category": "Facilities",
+    "icon": "golf_course"
+  },
+  {
+    "id": 235,
+    "name": "Golf optional",
+    "category": "Facilities",
+    "icon": "golf_course"
+  },
+  {
+    "id": 236,
+    "name": "Hiking",
+    "category": "Facilities",
+    "icon": "hiking"
+  },
+  {
+    "id": 237,
+    "name": "Hunting",
+    "category": "Facilities",
+    "icon": "point_scan"
+  },
+  {
+    "id": 238,
+    "name": "Ice skating",
+    "category": "Facilities",
+    "icon": "ice_skating"
+  },
+  {
+    "id": 239,
+    "name": "Jet skiing",
+    "category": "Facilities",
+    "icon": "snowmobile"
+  },
+  {
+    "id": 240,
+    "name": "Kayaking",
+    "category": "Facilities",
+    "icon": "kayaking"
+  },
+  {
+    "id": 241,
+    "name": "Mountain biking",
+    "category": "Facilities",
+    "icon": "directions_bike"
+  },
+  {
+    "id": 242,
+    "name": "Mountain climbing",
+    "category": "Facilities",
+    "icon": "elevation"
+  },
+  {
+    "id": 243,
+    "name": "Mountaineering",
+    "category": "Facilities",
+    "icon": "filter_hdr"
+  },
+  {
+    "id": 244,
+    "name": "Parasailing",
+    "category": "Facilities",
+    "icon": "paragliding"
+  },
+  {
+    "id": 245,
+    "name": "Pier fishing",
+    "category": "Facilities",
+    "icon": "phishing"
+  },
+  {
+    "id": 246,
+    "name": "Rafting",
+    "category": "Facilities",
+    "icon": "kayaking"
+  },
+  {
+    "id": 247,
+    "name": "Rock climbing",
+    "category": "Facilities",
+    "icon": "hiking"
+  },
+  {
+    "id": 248,
+    "name": "Sailing",
+    "category": "Facilities",
+    "icon": "sailing"
+  },
+  {
+    "id": 249,
+    "name": "Scuba or snorkeling",
+    "category": "Facilities",
+    "icon": "scuba_diving"
+  },
+  {
+    "id": 250,
+    "name": "Ski lift privileges optional",
+    "category": "Facilities",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 251,
+    "name": "Ski lift privileges",
+    "category": "Facilities",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 252,
+    "name": "Skiing",
+    "category": "Facilities",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 253,
+    "name": "Water Skiing",
+    "category": "Facilities",
+    "icon": "surfing"
+  },
+  {
+    "id": 254,
+    "name": "Snorkeling",
+    "category": "Facilities",
+    "icon": "scuba_diving"
+  },
+  {
+    "id": 255,
+    "name": "Snorkeling diving",
+    "category": "Facilities",
+    "icon": "scuba_diving"
+  },
+  {
+    "id": 256,
+    "name": "Snowboarding",
+    "category": "Facilities",
+    "icon": "snowboarding"
+  },
+  {
+    "id": 257,
+    "name": "Snowmobiling",
+    "category": "Facilities",
+    "icon": "snowmobile"
+  },
+  {
+    "id": 258,
+    "name": "Spelunking",
+    "category": "Facilities",
+    "icon": "elevation"
+  },
+  {
+    "id": 259,
+    "name": "Surfing",
+    "category": "Facilities",
+    "icon": "surfing"
+  },
+  {
+    "id": 260,
+    "name": "Swimming",
+    "category": "Facilities",
+    "icon": "pool"
+  },
+  {
+    "id": 261,
+    "name": "Tubing water",
+    "category": "Facilities",
+    "icon": "kitesurfing"
+  },
+  {
+    "id": 262,
+    "name": "Whitewater rafting",
+    "category": "Facilities",
+    "icon": "kitesurfing"
+  },
+  {
+    "id": 263,
+    "name": "Wind surfing",
+    "category": "Facilities",
+    "icon": "surfing"
+  },
+  {
+    "id": 264,
+    "name": "Family",
+    "category": "Others",
+    "icon": "family_restroom"
+  },
+  {
+    "id": 265,
+    "name": "Historic",
+    "category": "Others",
+    "icon": "castle"
+  },
+  {
+    "id": 266,
+    "name": "Romantic",
+    "category": "Others",
+    "icon": "favorite"
+  },
+  {
+    "id": 267,
+    "name": "Enhanced Cleaning Practices",
+    "category": "Others",
+    "icon": "cleaning_bucket"
+  },
+  {
+    "id": 268,
+    "name": "Cleaning",
+    "category": "Others",
+    "icon": "cleaning_services"
+  },
+  {
+    "id": 269,
+    "name": "Gap period between Guests 24 hours",
+    "category": "Others",
+    "icon": "safety_check"
+  },
+  {
+    "id": 270,
+    "name": "Gap period between Guests 48 hours",
+    "category": "Others",
+    "icon": "safety_check"
+  },
+  {
+    "id": 271,
+    "name": "Gap period between Guests 72 hours",
+    "category": "Others",
+    "icon": "safety_check"
+  },
+  {
+    "id": 272,
+    "name": "Contactless Check-In/Out",
+    "category": "Others",
+    "icon": "digital_out_of_home"
+  },
+  {
+    "id": 273,
+    "name": "Fenced pool",
+    "category": "Facilities",
+    "icon": "fence"
+  },
+  {
+    "id": 274,
+    "name": "Fenced yard",
+    "category": "Facilities",
+    "icon": "fence"
+  },
+  {
+    "id": 275,
+    "name": "Cabinet locks",
+    "category": "Others",
+    "icon": "key"
+  },
+  {
+    "id": 276,
+    "name": "Dishes & utensils for children",
+    "category": "Kitchen",
+    "icon": "restaurant"
+  },
+  {
+    "id": 277,
+    "name": "Books for kids",
+    "category": "Others",
+    "icon": "menu_book"
+  },
+  {
+    "id": 278,
+    "name": "Meal delivery",
+    "category": "Others",
+    "icon": "sports_motorsports"
+  },
+  {
+    "id": 279,
+    "name": "Childcare",
+    "category": "Others",
+    "icon": "escalator_warning"
+  },
+  {
+    "id": 280,
+    "name": "Free WiFi",
+    "category": "Others",
+    "icon": "wifi"
+  },
+  {
+    "id": 281,
+    "name": "Paid WiFi",
+    "category": "Others",
+    "icon": "wifi"
+  },
+  {
+    "id": 282,
+    "name": "WiFi speed (25+ Mbps)",
+    "category": "Others",
+    "icon": "network_wifi_3_bar"
+  },
+  {
+    "id": 283,
+    "name": "WiFi speed (50+ Mbps)",
+    "category": "Others",
+    "icon": "network_wifi"
+  },
+  {
+    "id": 284,
+    "name": "WiFi speed (100+ Mbps)",
+    "category": "Others",
+    "icon": "network_check"
+  },
+  {
+    "id": 285,
+    "name": "WiFi speed (250+ Mbps)",
+    "category": "Others",
+    "icon": "network_check"
+  },
+  {
+    "id": 286,
+    "name": "WiFi speed (500+ Mbps)",
+    "category": "Others",
+    "icon": "network_check"
+  },
+  {
+    "id": 287,
+    "name": "Smart TV",
+    "category": "Others",
+    "icon": "connected_tv"
+  },
+  {
+    "id": 288,
+    "name": "Office",
+    "category": "Facilities",
+    "icon": "business_center"
+  },
+  {
+    "id": 289,
+    "name": "Computer monitor",
+    "category": "Others",
+    "icon": "desktop_windows"
+  },
+  {
+    "id": 290,
+    "name": "Printer",
+    "category": "Others",
+    "icon": "print"
+  },
+  {
+    "id": 291,
+    "name": "Desk chair",
+    "category": "Others",
+    "icon": "airline_seat_recline_normal"
+  },
+  {
+    "id": 292,
+    "name": "Kitchen island",
+    "category": "Kitchen",
+    "icon": "countertops"
+  },
+  {
+    "id": 293,
+    "name": "Outdoor play area",
+    "category": "Facilities",
+    "icon": "grass"
+  },
+  {
+    "id": 294,
+    "name": "Dining table",
+    "category": "Kitchen",
+    "icon": "table_restaurant"
+  },
+  {
+    "id": 295,
+    "name": "Private fitness center",
+    "category": "Facilities",
+    "icon": "exercise"
+  },
+  {
+    "id": 296,
+    "name": "Fitness equipment",
+    "category": "Others",
+    "icon": "fitness_center"
+  },
+  {
+    "id": 297,
+    "name": "Communal sauna",
+    "category": "Facilities",
+    "icon": "sauna"
+  },
+  {
+    "id": 298,
+    "name": "Private sauna",
+    "category": "Facilities",
+    "icon": "sauna"
+  },
+  {
+    "id": 299,
+    "name": "Theater",
+    "category": "Facilities",
+    "icon": "theater_comedy"
+  },
+  {
+    "id": 300,
+    "name": "In person check-in",
+    "category": "Others",
+    "icon": "person_pin"
+  },
+  {
+    "id": 301,
+    "name": "Babysitter on request",
+    "category": "Others",
+    "icon": "breastfeeding"
+  },
+  {
+    "id": 302,
+    "name": "Children play area",
+    "category": "Facilities",
+    "icon": "bedroom_baby"
+  },
+  {
+    "id": 303,
+    "name": "Toddler bed",
+    "category": "Bedroom",
+    "icon": "bed"
+  },
+  {
+    "id": 304,
+    "name": "Kids amenities",
+    "category": "Facilities",
+    "icon": "child_care"
+  },
+  {
+    "id": 305,
+    "name": "City view",
+    "category": "Others",
+    "icon": "location_city"
+  },
+  {
+    "id": 306,
+    "name": "Private dock",
+    "category": "Facilities",
+    "icon": "dock_to_right"
+  },
+  {
+    "id": 307,
+    "name": "Communal tennis court",
+    "category": "Facilities",
+    "icon": "sports_tennis"
+  },
+  {
+    "id": 308,
+    "name": "Outdoor dining",
+    "category": "Facilities",
+    "icon": "restaurant_menu"
+  },
+  {
+    "id": 309,
+    "name": "Outdoor firepit",
+    "category": "Facilities",
+    "icon": "fireplace"
+  },
+  {
+    "id": 310,
+    "name": "Outdoor furniture",
+    "category": "Others",
+    "icon": "deck"
+  },
+  {
+    "id": 311,
+    "name": "Outdoor sunloungers",
+    "category": "Facilities",
+    "icon": "solar_power"
+  },
+  {
+    "id": 312,
+    "name": "Ski rental",
+    "category": "Others",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 313,
+    "name": "Ski storage",
+    "category": "Facilities",
+    "icon": "downhill_skiing"
+  },
+  {
+    "id": 314,
+    "name": "Private parking",
+    "category": "Facilities",
+    "icon": "local_parking"
+  },
+  {
+    "id": 315,
+    "name": "Pets allowed on request",
+    "category": "Others",
+    "icon": "pets"
+  },
+  {
+    "id": 316,
+    "name": "Pool",
+    "category": "Facilities",
+    "icon": "pool"
+  },
+  {
+    "id": 317,
+    "name": "Safe",
+    "category": "Others",
+    "icon": "lock"
+  },
+  {
+    "id": 318,
+    "name": "Security system",
+    "category": "Others",
+    "icon": "verified_user"
+  },
+  {
+    "id": 319,
+    "name": "Meal included",
+    "category": "Others",
+    "icon": "lunch_dining"
+  },
+  {
+    "id": 320,
+    "name": "Private chef on request",
+    "category": "Others",
+    "icon": "cooking"
+  },
+  {
+    "id": 321,
+    "name": "Butler included",
+    "category": "Others",
+    "icon": "emoji_people"
+  },
+  {
+    "id": 322,
+    "name": "Butler on request",
+    "category": "Others",
+    "icon": "emoji_people"
+  },
+  {
+    "id": 323,
+    "name": "Housekeeper included",
+    "category": "Others",
+    "icon": "hail"
+  },
+  {
+    "id": 324,
+    "name": "Housekeeper on request",
+    "category": "Others",
+    "icon": "hail"
+  },
+  {
+    "id": 325,
+    "name": "Grocery included",
+    "category": "Others",
+    "icon": "add_shopping_cart"
+  },
+  {
+    "id": 326,
+    "name": "Grocery on request",
+    "category": "Others",
+    "icon": "add_shopping_cart"
+  },
+  {
+    "id": 327,
+    "name": "Site staff included",
+    "category": "Others",
+    "icon": "hail"
+  },
+  {
+    "id": 328,
+    "name": "Site staff on request",
+    "category": "Others",
+    "icon": "hail"
+  },
+  {
+    "id": 329,
+    "name": "Valet parking included",
+    "category": "Others",
+    "icon": "minor_crash"
+  },
+  {
+    "id": 330,
+    "name": "Valet parking on request",
+    "category": "Others",
+    "icon": "minor_crash"
+  },
+  {
+    "id": 331,
+    "name": "Bartender included",
+    "category": "Others",
+    "icon": "local_bar"
+  },
+  {
+    "id": 332,
+    "name": "Bartender on request",
+    "category": "Others",
+    "icon": "local_bar"
+  },
+  {
+    "id": 333,
+    "name": "Laundry",
+    "category": "Facilities",
+    "icon": "laundry"
+  },
+  {
+    "id": 334,
+    "name": "Basketball private court",
+    "category": "Facilities",
+    "icon": "sports_basketball"
+  },
+  {
+    "id": 335,
+    "name": "Fire pit",
+    "category": "Facilities",
+    "icon": "fireplace"
+  },
+  {
+    "id": 337,
+    "name": "Cleaning products",
+    "category": "Bathroom",
+    "icon": "sanitizer"
+  },
+  {
+    "id": 338,
+    "name": "Body soap",
+    "category": "Bathroom",
+    "icon": "soap"
+  },
+  {
+    "id": 339,
+    "name": "Conditioner",
+    "category": "Bathroom",
+    "icon": "air_freshener"
+  },
+  {
+    "id": 340,
+    "name": "Rain Shower",
+    "category": "Bathroom",
+    "icon": "shower"
+  },
+  {
+    "id": 341,
+    "name": "Shower gel",
+    "category": "Bathroom",
+    "icon": "sanitizer"
+  },
+  {
+    "id": 342,
+    "name": "Clothing storage",
+    "category": "Bedroom",
+    "icon": "checkroom"
+  },
+  {
+    "id": 343,
+    "name": "Drying rack for clothing",
+    "category": "Bathroom",
+    "icon": "dry_cleaning"
+  },
+  {
+    "id": 344,
+    "name": "Mosquito net",
+    "category": "Others",
+    "icon": "grid_4x4"
+  },
+  {
+    "id": 345,
+    "name": "Exercise equipment",
+    "category": "Others",
+    "icon": "exercise"
+  },
+  {
+    "id": 346,
+    "name": "Piano",
+    "category": "Others",
+    "icon": "piano"
+  },
+  {
+    "id": 347,
+    "name": "Record player",
+    "category": "Others",
+    "icon": "album"
+  },
+  {
+    "id": 348,
+    "name": "Baby safety gates",
+    "category": "Others",
+    "icon": "gate"
+  },
+  {
+    "id": 349,
+    "name": "Board games",
+    "category": "Others",
+    "icon": "casino"
+  },
+  {
+    "id": 350,
+    "name": "Ceiling fan",
+    "category": "Others",
+    "icon": "toys_fan"
+  },
+  {
+    "id": 351,
+    "name": "Portable fans",
+    "category": "Others",
+    "icon": "mode_fan"
+  },
+  {
+    "id": 352,
+    "name": "Baking sheet",
+    "category": "Kitchen",
+    "icon": "breakfast_dining"
+  },
+  {
+    "id": 353,
+    "name": "Barbeque utensils",
+    "category": "Kitchen",
+    "icon": "outdoor_grill"
+  },
+  {
+    "id": 354,
+    "name": "Bread maker",
+    "category": "Kitchen",
+    "icon": "bakery_dining"
+  },
+  {
+    "id": 355,
+    "name": "Blender",
+    "category": "Kitchen",
+    "icon": "blender"
+  },
+  {
+    "id": 356,
+    "name": "Coffee",
+    "category": "Kitchen",
+    "icon": "coffee"
+  },
+  {
+    "id": 357,
+    "name": "Freezer",
+    "category": "Kitchen",
+    "icon": "kitchen"
+  },
+  {
+    "id": 358,
+    "name": "Mini fridge",
+    "category": "Kitchen",
+    "icon": "kitchen"
+  },
+  {
+    "id": 359,
+    "name": "Rice maker",
+    "category": "Kitchen",
+    "icon": "takeout_dining"
+  },
+  {
+    "id": 360,
+    "name": "Trash Compactor",
+    "category": "Kitchen",
+    "icon": "delete_sweep"
+  },
+  {
+    "id": 361,
+    "name": "Wine glasses",
+    "category": "Kitchen",
+    "icon": "wine_bar"
+  },
+  {
+    "id": 362,
+    "name": "Hammock",
+    "category": "Facilities",
+    "icon": "airline_seat_flat"
+  },
+  {
+    "id": 363,
+    "name": "Outdoor kitchen",
+    "category": "Kitchen",
+    "icon": "countertops"
+  },
+  {
+    "id": 364,
+    "name": "Step-free access",
+    "category": "Others",
+    "icon": "trending_flat"
+  },
+  {
+    "id": 365,
+    "name": "Wide doorway",
+    "category": "Others",
+    "icon": "door_sliding"
+  }
+]

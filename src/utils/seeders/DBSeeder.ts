@@ -12,6 +12,12 @@ export default async (strapi) => {
   } catch (error) {
     console.log(`Error while seeding Blogs: `, error);
   }
+
+  try {
+    await seedAmenityIcons(strapi);
+  } catch (error) {
+    console.log(`Error while seeding Amenity Icons: `, error);
+  }
 };
 
 const seedReviews = async (strapi) => {
@@ -29,5 +35,15 @@ const seedReviews = async (strapi) => {
         }
       });
     }
+  }
+};
+
+const seedAmenityIcons = async (strapi) => {
+  const amenities = require('./amenities.json');
+  for (const amenity of amenities) {
+    const entity = await strapi.db.query('api::amenity.amenity').update({
+      where: { name: amenity.name },
+      data: { category: amenity.category, icon: amenity.icon },
+    });
   }
 };
