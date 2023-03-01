@@ -13,6 +13,11 @@ const templates = {
     text: ``,
     html: ``,
   },
+  new_property: {
+    subject: '',
+    text: ``,
+    html: ``,
+  },
 };
 
 /**
