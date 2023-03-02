@@ -1,4 +1,3 @@
-import _ from "lodash";
 import moment from "moment";
 import { DATE_FORMAT } from "./APITypes";
 
@@ -61,9 +60,49 @@ const templates = {
     `,
   },
   new_property: {
-    subject: '',
-    text: ``,
-    html: ``,
+    subject: 'Magnificent: New Property Under Review!',
+    text: `
+    Your new property will be reviewed by our team, and as soon as it is approved, we will contact you \n
+    ------------------------ \n
+    Property: \n
+    ------------------------ \n
+    Type: <%= property.property_type.name %> \n
+    Title: <%= property.Title %> \n
+    Square Meters: <%= property.squareMeters %> \n
+    Bedrooms: <%= property.bedroomsNumber %> \n
+    Bathrooms: <%= property.bathroomsNumber %> \n
+    Price: <%= property.price %> \n
+    Address: <%= property.contact.contactAddress %> \n
+
+    ------------------------- \n
+    User Information: \n
+    ------------------------- \n
+    First Name: <%= property.contact.contactName %> \n
+    Last Name: <%= property.contact.contactSurName %> \n
+    Phone Number: <%= property.contact.contactPhone1 %> \n
+    Email: <%= property.contact.contactEmail %> \n
+    `,
+    html: `
+    Your new property will be reviewed by our team, and as soon as it is approved, we will contact you. <br />
+    <hr />
+    <strong>Property:</strong>
+    <hr />
+    <strong>Type:</strong> <%= property.property_type.name %> <br />
+    <strong>Title:</strong> <%= property.Title %> <br />
+    <strong>Square Meters:</strong> <%= property.squareMeters %> <br />
+    <strong>Bedrooms:</strong> <%= property.bedroomsNumber %> <br />
+    <strong>Bathrooms:</strong> <%= property.bathroomsNumber %> <br />
+    <strong>Price:</strong> <%= property.price %> <br />
+    <strong>Address:</strong> <%= property.contact.contactAddress %> <br />
+
+    <hr />
+    <strong>User Information:</strong>
+    <hr />
+    <strong>First Name:</strong> <%= property.contact.contactName %> <br />
+    <strong>Last Name:</strong> <%= property.contact.contactSurName %> <br />
+    <strong>Phone Number:</strong> <%= property.contact.contactPhone1 %> <br />
+    <strong>Email:</strong> <%= property.contact.contactEmail %> <br />
+    `,
   },
 };
 
@@ -121,4 +160,18 @@ export const sendBookingSuccess = async (payment) => {
 
 // ========================================================================================
 
-// TODO: Rent your place confirmation
+/**
+ * Send Email to user when they create a NewProperty
+ */
+export const sendNewProperty = async (entity) => {
+  await strapi.plugins['email'].services.email.sendTemplatedEmail(
+    // Email destination and source
+    { to: entity.contact.contactEmail },
+    // Template name
+    templates.new_property,
+    // Data used to compile template
+    {
+      property: entity
+    }
+  );
+};
