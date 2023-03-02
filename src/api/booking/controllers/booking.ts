@@ -5,6 +5,7 @@
 import { factories } from '@strapi/strapi'
 import moment from 'moment';
 import { DATE_FORMAT, EChannelId, TCalendar, TReservation, TReservationPriceCalculationResponse } from '../../../utils/APITypes';
+import { sendBookingSuccess } from '../../../utils/Email';
 import HostawayAPI from '../../../utils/HostawayAPI';
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
@@ -300,7 +301,11 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
             booking: {
               populate: {
                 guest: true,
-                property: true
+                property: {
+                  populate: {
+                    address: true
+                  }
+                }
               }
             }
           }
@@ -336,6 +341,8 @@ export default factories.createCoreController('api::booking.booking', ({strapi})
           // where: { id: booking.id },
           // data: { syncedWithHostaway: true, hostawayReservationId: result.id, hostawayResponse: result },
         // });
+        // 3 - Send Booking Success Email
+        await sendBookingSuccess(payment);
         console.log('[Stripe Webhook: completed]');
         return { message: 'Success' };
         //------------------------------------------------------------------------------------------
